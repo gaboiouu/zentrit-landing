@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&A ZentrIT | Arquitectura Digital & Desarrollo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Manrope', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        /* Paleta "Luz y Precisión" */
+                        atelier: {
+                            bg: '#FDFDFC',      /* Blanco Óptico casi puro */
+                            surface: '#F5F5F3', /* Gris perla muy sutil para tarjetas */
+                            border: '#E5E5E0',  /* Gris suave para líneas */
+                            text: '#525250',    /* Gris medio para párrafos */
+                            dark: '#1A1A1A',    /* Grafito puro para títulos fuertes */
+                        },
+                        signature: {
+                            accent: '#FF4A1C',  /* Naranja Óxido/Hermès vibrante pero maduro */
+                            hover: '#E03E15'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ocultar barra de desplazamiento pero mantener funcionalidad */
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+
+        /* Animaciones de entrada */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+
+        .glow-accent {
+            box-shadow: 0 0 20px rgba(255, 74, 28, 0.2);
+        }
+
+        /* Carrusel 3D Coverflow */
+        .coverflow-stage {
+            perspective: 1200px;
+            perspective-origin: 50% 42%;
+        }
+        #coverflowTrack {
+            transform-style: preserve-3d;
+            height: 100%;
+        }
+        .coverflow-item {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: min(88vw, 340px);
+            transform-style: preserve-3d;
+            transform-origin: center center;
+            transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1),
+                        opacity 0.65s ease,
+                        filter 0.65s ease;
+            will-change: transform, opacity;
+        }
+        @media (min-width: 768px) {
+            .coverflow-item { width: 360px; }
+        }
+        .coverflow-item.is-active {
+            filter: brightness(1);
+        }
+        .coverflow-item:not(.is-active) {
+            filter: brightness(0.75);
+        }
+        .coverflow-item.is-active .coverflow-card {
+            border-color: rgba(255, 74, 28, 0.35);
+        }
+        .coverflow-item.is-active .coverflow-img {
+            opacity: 1;
+            filter: grayscale(0);
+        }
+        .coverflow-item:not(.is-active) .coverflow-img {
+            opacity: 0.75;
+            filter: grayscale(1);
+        }
+        .carousel-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: #404040;
+            transition: all 0.35s ease;
+        }
+        .carousel-dot.is-active {
+            width: 22px;
+            background: #FF4A1C;
+        }
+    </style>
+</head>
+<body class="font-sans font-light bg-atelier-bg text-atelier-dark selection:bg-signature-accent selection:text-white overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 bg-atelier-bg/80 backdrop-blur-md transition-all duration-300 border-b border-transparent" id="navbar">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 h-20 flex justify-between items-center">
+            
+            <!-- Logo Técnico A&A ZentrIT (Adaptado a fondo claro) -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="flex items-center text-xl font-display font-extrabold tracking-tight text-atelier-dark">
+                    <span>A</span>
+                    <span class="text-signature-accent font-light mx-1">/</span>
+                    <span>A</span>
+                </div>
+                <div class="h-3 w-px bg-atelier-border"></div>
+                <div class="text-[0.65rem] tracking-widest uppercase font-sans text-atelier-text font-medium group-hover:text-signature-accent transition-colors">
+                    Zentr<span class="text-atelier-dark font-bold">IT</span>
+                </div>
+            </a>
+            
+            <!-- Enlaces de Navegación (PC) -->
+            <div class="hidden md:flex gap-10 text-[11px] tracking-widest uppercase font-medium text-atelier-text">
+                <a href="#nucleo" class="hover:text-atelier-dark transition-colors">El Núcleo</a>
+                <a href="#servicios" class="hover:text-atelier-dark transition-colors">Capacidades</a>
+                <a href="#proyectos" class="hover:text-atelier-dark transition-colors">Sistemas</a>
+            </div>
+
+            <!-- Botón CTA -->
+            <a href="#contacto" class="text-[11px] tracking-widest uppercase font-semibold bg-atelier-dark text-white px-5 py-2.5 rounded hover:bg-signature-accent transition-colors shadow-sm">
+                Iniciar Proyecto
+            </a>
+        </div>
+    </nav>
+
+    <header class="pt-40 md:pt-52 pb-24 px-6 md:px-12 max-w-[1400px] mx-auto min-h-[85vh] flex flex-col justify-center relative">
+        <!-- Elemento decorativo sutil de fondo -->
+        <div class="absolute top-1/4 right-0 w-96 h-96 bg-signature-accent/5 rounded-full blur-3xl -z-10"></div>
+        
+        <div class="max-w-5xl fade-up">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-1.5 h-1.5 bg-signature-accent rounded-full animate-pulse glow-accent"></div>
+                <h2 class="text-[10px] tracking-[0.3em] uppercase text-atelier-text font-mono font-medium">Arquitectura Digital & Desarrollo</h2>
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-[5.5rem] font-display font-bold tracking-tight leading-[1.05] text-atelier-dark mb-10">
+                Diseño de precisión. <br class="hidden md:block">
+                Ingeniería <span class="text-atelier-text">implacable.</span>
+            </h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                <p class="text-lg text-atelier-text font-light leading-relaxed">
+                    Aarón y Adrián fundaron ZentrIT para empresas que no aceptan concesiones. Desarrollamos infraestructura digital; desde plataformas E-Commerce de alto rendimiento hasta sistemas ERP diseñados a medida.
+                </p>
+                <div class="flex flex-col justify-end">
+                    <a href="#proyectos" class="inline-flex items-center gap-3 text-xs tracking-widest uppercase font-semibold text-atelier-dark group w-fit hover:text-signature-accent transition-colors">
+                        <span>Ver Casos de Estudio</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="nucleo" class="py-24 bg-atelier-surface border-y border-atelier-border">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <div class="lg:col-span-5 fade-up">
+                <div class="flex items-center gap-4 mb-8">
+                    <span class="text-[10px] font-mono text-atelier-text font-semibold uppercase tracking-widest">01 / Filosofía</span>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-display font-bold leading-tight mb-6 text-atelier-dark">El rendimiento no es opcional. La estética tampoco.</h3>
+                <p class="text-atelier-text leading-relaxed font-light mb-8">
+                    Eliminamos la brecha entre el diseño visual y la ingeniería de software. Construimos sistemas complejos que son intuitivos, y páginas web que son técnicamente invulnerables.
+                </p>
+                <div class="grid grid-cols-2 gap-8 pt-6 border-t border-atelier-border">
+                    <div>
+                        <span class="block text-2xl font-display font-bold text-atelier-dark">UX</span>
+                        <span class="text-[10px] text-atelier-text uppercase tracking-widest mt-1 block font-medium">Interfaces Inteligentes</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-display font-bold text-atelier-dark">DEV</span>
+                        <span class="text-[10px] text-atelier-text uppercase tracking-widest mt-1 block font-medium">Código Estructurado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 overflow-hidden fade-up rounded-xl bg-atelier-bg aspect-[4/3] relative border border-atelier-border/50 shadow-sm">
+                <img src="https://placehold.co/1200x900/FDFDFC/E5E5E0?text=Wireframe+|+Data+Structure" alt="Infraestructura A&A" class="w-full h-full object-cover mix-blend-multiply opacity-80 hover:opacity-100 transition-opacity duration-700">
+                <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur border border-atelier-border px-3 py-1.5 rounded text-[10px] uppercase tracking-widest font-mono font-medium text-signature-accent shadow-sm">
+                    SYS.REQ_001
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 md:py-32 px-6 md:px-12 max-w-[1400px] mx-auto">
+        <div class="mb-16 fade-up">
+            <h2 class="text-[10px] font-mono font-semibold tracking-widest uppercase text-atelier-text mb-4">02 / Capacidades</h2>
+            <h3 class="text-4xl font-display font-bold text-atelier-dark">Ingeniería & Servicios</h3>
+        </div>
+
+        <div class="border-t border-atelier-border">
+            <!-- Servicio 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-10 border-b border-atelier-border hover:bg-atelier-surface transition-colors fade-up group px-4 -mx-4 rounded-lg">
+                <div class="md:col-span-4 flex flex-col justify-between">
+                    <h4 class="text-2xl font-display font-bold text-atelier-dark group-hover:text-signature-accent group-hover:translate-x-2 transition-all">Sistemas & ERPs</h4>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="text-atelier-text font-light leading-relaxed mb-6">
+                        Desarrollo de software a la medida para operaciones empresariales. Digitalizamos flujos de trabajo complejos, gestión de inventarios y análisis de datos en paneles de control unificados y ultrarrápidos.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Arquitectura Backend</span>
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Bases de Datos</span>
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">APIs REST</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-10 border-b border-atelier-border hover:bg-atelier-surface transition-colors fade-up group px-4 -mx-4 rounded-lg">
+                <div class="md:col-span-4 flex flex-col justify-between">
+                    <h4 class="text-2xl font-display font-bold text-atelier-dark group-hover:text-signature-accent group-hover:translate-x-2 transition-all">E-Commerce Avanzado</h4>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="text-atelier-text font-light leading-relaxed mb-6">
+                        Tiendas digitales diseñadas para alto volumen y conversión. Optimizamos cada milisegundo de carga y diseñamos experiencias de compra fluidas que elevan la percepción de tu marca.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Headless Commerce</span>
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Pasarelas de Pago</span>
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Optimización de Conversión</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 py-10 border-b border-atelier-border hover:bg-atelier-surface transition-colors fade-up group px-4 -mx-4 rounded-lg">
+                <div class="md:col-span-4 flex flex-col justify-between">
+                    <h4 class="text-2xl font-display font-bold text-atelier-dark group-hover:text-signature-accent group-hover:translate-x-2 transition-all">Web & Landing Pages</h4>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="text-atelier-text font-light leading-relaxed mb-6">
+                        Sitios web corporativos que comunican autoridad. Desde la dirección de arte hasta el despliegue técnico, creamos páginas que capturan leads y dominan visualmente su sector.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Diseño UI/UX</span>
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">Animaciones Fluidas</span>
+                        <span class="px-3 py-1 bg-white border border-atelier-border text-[11px] font-mono text-atelier-text rounded shadow-sm">SEO Técnico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- La sección de proyectos la hacemos oscura para crear contraste e impacto ("Modo Presentación") -->
+    <section id="proyectos" class="py-10 md:py-14 bg-atelier-dark text-white overflow-hidden relative border-y border-atelier-dark">
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 mb-5 fade-up">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-[10px] font-mono font-semibold tracking-widest uppercase text-gray-400 mb-1">03 / Casos de Estudio</h2>
+                    <h3 class="text-xl md:text-2xl font-display font-bold text-white">Sistemas en Producción</h3>
+                </div>
+                <!-- Controles del Carrusel (PC) -->
+                <div class="hidden md:flex gap-3">
+                    <button id="prevBtn" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-signature-accent hover:border-signature-accent hover:text-white transition-colors cursor-pointer z-10 bg-gray-800/50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="nextBtn" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:bg-signature-accent hover:border-signature-accent hover:text-white transition-colors cursor-pointer z-10 bg-gray-800/50">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+            <!-- Carrusel 3D Coverflow -->
+            <div id="coverflowStage" class="coverflow-stage relative h-[380px] sm:h-[400px] md:h-[420px] fade-up">
+                <div id="coverflowTrack" class="absolute inset-0">
+
+                    <!-- Proyecto 1: ERP -->
+                    <article class="coverflow-item group cursor-pointer" data-index="0">
+                        <div class="coverflow-card bg-[#222222] border border-gray-800 rounded-xl overflow-hidden shadow-2xl transition-colors duration-300 hover:border-signature-accent/50">
+                            <div class="aspect-[16/10] relative overflow-hidden bg-black">
+                                <img src="https://placehold.co/1200x675/111111/444444?text=Dashboard+Log%C3%ADstica" alt="Nexus ERP" class="coverflow-img w-full h-full object-cover transition-all duration-500 pointer-events-none">
+                                <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[10px] text-signature-accent border border-signature-accent/30 uppercase font-mono font-medium px-2 py-0.5 rounded">SaaS / ERP</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start gap-2 mb-2">
+                                    <h4 class="text-lg font-display font-bold text-white leading-tight">Nexus Logistics Cloud</h4>
+                                    <a href="#" class="coverflow-link inline-flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold text-atelier-dark bg-white px-2.5 py-1 rounded hover:bg-signature-accent hover:text-white transition-colors shrink-0">
+                                        Ver Sistema
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
+                                </div>
+                                <p class="text-gray-400 font-light text-xs mb-3 line-clamp-2">ERP para gestión de flotas en tiempo real con dashboard ultrarrápido.</p>
+                                <div class="grid grid-cols-3 gap-2 pt-3 border-t border-gray-800 text-center">
+                                    <div><span class="block text-sm font-display font-bold text-white">-40%</span><span class="text-[9px] uppercase font-mono text-gray-500">Operativo</span></div>
+                                    <div><span class="block text-sm font-display font-bold text-white">0.2s</span><span class="text-[9px] uppercase font-mono text-gray-500">Latencia</span></div>
+                                    <div><span class="block text-sm font-display font-bold text-white">100%</span><span class="text-[9px] uppercase font-mono text-gray-500">Trazabilidad</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 2: E-Commerce -->
+                    <article class="coverflow-item group cursor-pointer" data-index="1">
+                        <div class="coverflow-card bg-[#222222] border border-gray-800 rounded-xl overflow-hidden shadow-2xl transition-colors duration-300 hover:border-signature-accent/50">
+                            <div class="aspect-[16/10] relative overflow-hidden bg-black">
+                                <img src="https://placehold.co/1200x675/111111/444444?text=Boutique+Headless" alt="Aura E-Commerce" class="coverflow-img w-full h-full object-cover transition-all duration-500 pointer-events-none">
+                                <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[10px] text-signature-accent border border-signature-accent/30 uppercase font-mono font-medium px-2 py-0.5 rounded">E-Commerce</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start gap-2 mb-2">
+                                    <h4 class="text-lg font-display font-bold text-white leading-tight">Aura Minimal Store</h4>
+                                    <a href="#" class="coverflow-link inline-flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold text-atelier-dark bg-white px-2.5 py-1 rounded hover:bg-signature-accent hover:text-white transition-colors shrink-0">
+                                        Ver Tienda
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
+                                </div>
+                                <p class="text-gray-400 font-light text-xs mb-3 line-clamp-2">Headless Commerce premium con experiencia fluida y alto rendimiento.</p>
+                                <div class="grid grid-cols-3 gap-2 pt-3 border-t border-gray-800 text-center">
+                                    <div><span class="block text-sm font-display font-bold text-white">+125%</span><span class="text-[9px] uppercase font-mono text-gray-500">Conversión</span></div>
+                                    <div><span class="block text-sm font-display font-bold text-white">0.8s</span><span class="text-[9px] uppercase font-mono text-gray-500">LCP</span></div>
+                                    <div><span class="block text-sm font-display font-bold text-white">98</span><span class="text-[9px] uppercase font-mono text-gray-500">UX Score</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Proyecto 3: Landing -->
+                    <article class="coverflow-item group cursor-pointer" data-index="2">
+                        <div class="coverflow-card bg-[#222222] border border-gray-800 rounded-xl overflow-hidden shadow-2xl transition-colors duration-300 hover:border-signature-accent/50">
+                            <div class="aspect-[16/10] relative overflow-hidden bg-black">
+                                <img src="https://placehold.co/1200x675/111111/444444?text=Fintech+Landing" alt="Vault Fintech" class="coverflow-img w-full h-full object-cover transition-all duration-500 pointer-events-none">
+                                <span class="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-[10px] text-signature-accent border border-signature-accent/30 uppercase font-mono font-medium px-2 py-0.5 rounded">Web Corporate</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start gap-2 mb-2">
+                                    <h4 class="text-lg font-display font-bold text-white leading-tight">Vault Fintech App</h4>
+                                    <a href="#" class="coverflow-link inline-flex items-center gap-1 text-[10px] uppercase tracking-widest font-bold text-atelier-dark bg-white px-2.5 py-1 rounded hover:bg-signature-accent hover:text-white transition-colors shrink-0">
+                                        Ver Web
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                    </a>
+                                </div>
+                                <p class="text-gray-400 font-light text-xs mb-3 line-clamp-2">Landing fintech con animaciones sutiles y funnel de registro optimizado.</p>
+                                <div class="grid grid-cols-3 gap-2 pt-3 border-t border-gray-800 text-center">
+                                    <div><span class="block text-sm font-display font-bold text-white">15k+</span><span class="text-[9px] uppercase font-mono text-gray-500">Leads</span></div>
+                                    <div><span class="block text-sm font-display font-bold text-white">2.4m</span><span class="text-[9px] uppercase font-mono text-gray-500">Tiempo</span></div>
+                                    <div><span class="block text-sm font-display font-bold text-white">-30%</span><span class="text-[9px] uppercase font-mono text-gray-500">CAC</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Indicadores (estilo Flickity) -->
+            <div id="carouselDots" class="flex justify-center items-center gap-2 mt-2 mb-4" aria-label="Proyectos"></div>
+
+            <div class="max-w-md mx-auto flex items-center justify-between border-t border-gray-800 pt-3">
+                <span id="carouselLabel" class="text-[10px] font-mono font-bold uppercase tracking-widest text-signature-accent">01 / 03</span>
+                <div class="w-28 h-px bg-gray-800 relative overflow-hidden">
+                    <div id="carouselProgress" class="absolute top-0 left-0 h-full bg-signature-accent transition-all duration-500" style="width: 33.33%"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volvemos al tema claro para el formulario, para facilitar la lectura -->
+    <section id="contacto" class="py-24 md:py-32 px-6 md:px-12 max-w-[1400px] mx-auto bg-atelier-bg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="fade-up">
+                <span class="text-[10px] font-mono font-semibold tracking-widest uppercase text-atelier-text mb-4 block">04 / Contacto</span>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-8 text-atelier-dark leading-tight">Inicializa tu <br>siguiente proyecto.</h2>
+                <p class="text-atelier-text font-light mb-12 max-w-md">
+                    Ya sea que requieras la solidez de un sistema a medida o la precisión visual de un E-Commerce de alto rendimiento, estamos listos para revisar la arquitectura técnica.
+                </p>
+                
+                <div class="space-y-6 text-sm font-mono font-medium">
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest text-atelier-text mb-1">Email_Routing</span>
+                        <a href="mailto:hello@aazentrit.com" class="text-atelier-dark hover:text-signature-accent transition-colors">hello@aazentrit.com</a>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest text-atelier-text mb-1">Ubicación_Servidor</span>
+                        <p class="text-atelier-dark">Perú. Operando a nivel global.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario UI Limpio (Fondo Claro) -->
+            <div class="fade-up md:mt-12 bg-white p-8 md:p-10 rounded-2xl border border-atelier-border shadow-sm">
+                <form id="contactForm" class="space-y-8">
+                    <div class="flex flex-col gap-2">
+                        <label for="name" class="text-[10px] font-mono font-bold text-atelier-text uppercase tracking-widest">Identificación (Nombre / Empresa)</label>
+                        <input type="text" id="name" required class="w-full border border-atelier-border bg-atelier-surface/50 rounded-lg px-4 py-3 text-atelier-dark placeholder-gray-400 focus:border-signature-accent focus:bg-white focus:ring-1 focus:ring-signature-accent outline-none transition-all font-medium text-sm" placeholder="Ej. Juan Pérez / TechCorp">
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <label for="email" class="text-[10px] font-mono font-bold text-atelier-text uppercase tracking-widest">Correo Electrónico</label>
+                        <input type="email" id="email" required class="w-full border border-atelier-border bg-atelier-surface/50 rounded-lg px-4 py-3 text-atelier-dark placeholder-gray-400 focus:border-signature-accent focus:bg-white focus:ring-1 focus:ring-signature-accent outline-none transition-all font-medium text-sm" placeholder="correo@empresa.com">
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <label for="message" class="text-[10px] font-mono font-bold text-atelier-text uppercase tracking-widest">Especificaciones del Proyecto</label>
+                        <textarea id="message" required class="w-full h-32 border border-atelier-border bg-atelier-surface/50 rounded-lg px-4 py-3 text-atelier-dark placeholder-gray-400 focus:border-signature-accent focus:bg-white focus:ring-1 focus:ring-signature-accent outline-none transition-all font-medium text-sm resize-none" placeholder="Describe brevemente lo que necesitas..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="bg-atelier-dark text-white px-8 py-4 text-[11px] tracking-widest uppercase font-bold rounded hover:bg-signature-accent transition-colors w-full flex items-center justify-center gap-3 shadow-md group mt-2">
+                        Transmitir Datos
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 px-6 md:px-12 max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-atelier-text font-mono font-semibold uppercase tracking-widest border-t border-atelier-border">
+        <p>&copy; 2026 A&A ZentrIT.</p>
+        <div class="flex gap-8 mt-4 md:mt-0">
+            <a href="#" class="hover:text-signature-accent transition-colors">LinkedIn</a>
+            <a href="#" class="hover:text-signature-accent transition-colors">GitHub</a>
+        </div>
+    </footer>
+
+    <!-- Notificación Toast Personalizada -->
+    <div id="toastNotif" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-atelier-dark border border-gray-700 text-white px-6 py-3 rounded shadow-2xl flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-10 pointer-events-none z-50">
+        <svg class="w-4 h-4 text-signature-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        <span class="text-xs font-mono font-medium uppercase tracking-widest text-gray-200">Datos transmitidos correctamente</span>
+    </div>
+
+    <script>
+        // Animaciones al hacer scroll (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Textarea auto-ajustable
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].addEventListener("input", OnInput, false);
+        }
+        function OnInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + "px";
+        }
+
+        // Efecto visual en la barra de navegación al hacer scroll
+        const nav = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('border-atelier-border', 'shadow-sm');
+                nav.classList.remove('border-transparent');
+            } else {
+                nav.classList.remove('border-atelier-border', 'shadow-sm');
+                nav.classList.add('border-transparent');
+            }
+        });
+
+        // Manejo del formulario (reemplazo del alert)
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const toast = document.getElementById('toastNotif');
+            toast.classList.remove('opacity-0', 'translate-y-10');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            // Limpiar formulario
+            e.target.reset();
+            
+            // Ocultar toast después de 4 segundos
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-10');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 4000);
+        });
+
+        // Carrusel 3D Coverflow
+        const coverflowStage = document.getElementById('coverflowStage');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('carouselProgress');
+        const carouselLabel = document.getElementById('carouselLabel');
+        const dotsContainer = document.getElementById('carouselDots');
+        const AUTOPLAY_MS = 5000;
+
+        if (coverflowStage && prevBtn && nextBtn) {
+            const slides = coverflowStage.querySelectorAll('.coverflow-item');
+            const total = slides.length;
+            let currentIndex = 0;
+            let autoPlayTimer = null;
+
+            const getOffset = (index) => {
+                let offset = index - currentIndex;
+                if (offset > total / 2) offset -= total;
+                if (offset < -total / 2) offset += total;
+                return offset;
+            };
+
+            const applyTransforms = () => {
+                const isMobile = window.innerWidth < 640;
+
+                slides.forEach((slide, index) => {
+                    const offset = getOffset(index);
+                    const abs = Math.abs(offset);
+                    const isActive = offset === 0;
+
+                    slide.classList.toggle('is-active', isActive);
+
+                    if (isMobile && abs > 0) {
+                        slide.style.opacity = '0';
+                        slide.style.pointerEvents = 'none';
+                        slide.style.transform = 'translate(-50%, -50%) scale(0.85)';
+                        return;
+                    }
+
+                    const xPercent = offset * (isMobile ? 0 : 62);
+                    const rotateY = -offset * 38;
+                    const scale = isActive ? 1 : 0.82;
+                    const translateZ = isActive ? 0 : -140;
+                    const opacity = abs > 1 ? 0 : isActive ? 1 : 0.5;
+
+                    slide.style.opacity = String(opacity);
+                    slide.style.pointerEvents = abs <= 1 ? 'auto' : 'none';
+                    slide.style.zIndex = String(20 - abs);
+                    slide.style.transform = `translate(-50%, -50%) translateX(${xPercent}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`;
+                });
+            };
+
+            const updateUI = () => {
+                const pct = ((currentIndex + 1) / total) * 100;
+                if (progressBar) progressBar.style.width = `${pct}%`;
+                if (carouselLabel) {
+                    carouselLabel.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+                }
+                dotsContainer?.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === currentIndex);
+                    dot.setAttribute('aria-current', i === currentIndex ? 'true' : 'false');
+                });
+                applyTransforms();
+            };
+
+            const goToSlide = (index) => {
+                currentIndex = ((index % total) + total) % total;
+                updateUI();
+            };
+
+            const nextSlide = () => goToSlide(currentIndex + 1);
+            const prevSlide = () => goToSlide(currentIndex - 1);
+
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                autoPlayTimer = setInterval(nextSlide, AUTOPLAY_MS);
+            };
+
+            const stopAutoPlay = () => {
+                if (autoPlayTimer) {
+                    clearInterval(autoPlayTimer);
+                    autoPlayTimer = null;
+                }
+            };
+
+            const resetAutoPlay = () => {
+                stopAutoPlay();
+                startAutoPlay();
+            };
+
+            // Dots
+            if (dotsContainer) {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'carousel-dot';
+                    dot.setAttribute('aria-label', `Proyecto ${i + 1}`);
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        resetAutoPlay();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+
+            coverflowStage.addEventListener('mouseenter', stopAutoPlay);
+            coverflowStage.addEventListener('mouseleave', startAutoPlay);
+
+            slides.forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    const offset = getOffset(index);
+                    if (offset === -1) prevSlide();
+                    else if (offset === 1) nextSlide();
+                    else if (offset !== 0) goToSlide(index);
+                    resetAutoPlay();
+                });
+            });
+
+            coverflowStage.querySelectorAll('.coverflow-link').forEach(link => {
+                link.addEventListener('click', (e) => e.stopPropagation());
+            });
+
+            // Swipe en móvil
+            let touchStartX = 0;
+            coverflowStage.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                stopAutoPlay();
+            }, { passive: true });
+            coverflowStage.addEventListener('touchend', (e) => {
+                const diff = e.changedTouches[0].screenX - touchStartX;
+                if (Math.abs(diff) > 50) diff > 0 ? prevSlide() : nextSlide();
+                updateUI();
+                startAutoPlay();
+            }, { passive: true });
+
+            window.addEventListener('resize', applyTransforms);
+
+            updateUI();
+            startAutoPlay();
+        }
+    </script>
+</body>
+</html>
