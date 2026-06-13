@@ -1,0 +1,51 @@
+---
+import { Code2, Triangle, Rocket, FileCode, Server, Terminal, Database, Paintbrush, Container, Flame, Share2, Smartphone, Sparkles } from "lucide-react";
+
+const techs = [
+  { name: "React", icon: Code2 },
+  { name: "Next.js", icon: Triangle },
+  { name: "Astro", icon: Rocket },
+  { name: "TypeScript", icon: FileCode },
+  { name: "Node.js", icon: Server },
+  { name: "Python", icon: Terminal },
+  { name: "PostgreSQL", icon: Database },
+  { name: "MongoDB", icon: Database },
+  { name: "Tailwind", icon: Paintbrush },
+  { name: "Docker", icon: Container },
+  { name: "Firebase", icon: Flame },
+  { name: "GraphQL", icon: Share2 },
+  { name: "React Native", icon: Smartphone },
+  { name: "Framer Motion", icon: Sparkles },
+];
+---
+
+<section id="tecnologias" class="py-28 relative overflow-hidden">
+  <div class="absolute inset-0 bg-zt-surface/30 -z-10"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 fade-up">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-px bg-zt-primary/60"></span>
+          <span class="text-[10px] font-mono text-zt-primary font-semibold uppercase tracking-[0.25em]">05 / Stack</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-zt-dark leading-tight">
+          Tecnologías <span class="accent-gradient-text">modernas</span>
+        </h2>
+      </div>
+      <p class="text-zt-text/60 max-w-xs text-sm font-light leading-relaxed">
+        Elegimos cada herramienta según el problema. No tenemos martillo favorito.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-3 fade-up">
+      {techs.map((t) => (
+        <span class="group inline-flex items-center gap-2.5 px-5 py-3 bg-white/80 backdrop-blur border border-zt-border/50 rounded-xl text-sm font-mono text-zt-text/70 transition-all duration-300 hover:border-zt-primary/30 hover:bg-white hover:shadow-lg hover:shadow-zt-primary/5 hover:text-zt-primary card-hover cursor-default">
+          <t.icon class="w-4 h-4 text-zt-text/40 group-hover:text-zt-primary transition-colors duration-300" strokeWidth={1.5} />
+          {t.name}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

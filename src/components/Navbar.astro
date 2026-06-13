@@ -1,0 +1,80 @@
+---
+
+const navLinks = [
+  { label: "El Núcleo", href: "#nucleo" },
+  { label: "Capacidades", href: "#servicios" },
+  { label: "Sistemas", href: "#proyectos" },
+  { label: "Contacto", href: "#contacto" },
+];
+---
+
+<nav class="fixed w-full z-50 transition-all duration-700 ease-out" id="navbar">
+  <div class="max-w-[1400px] mx-auto px-6 md:px-12 h-24 flex justify-between items-center">
+    <a href="/" class="flex items-center gap-3 group" aria-label="A&A ZentrIT — Inicio">
+      <img src="/zt.png" alt="A&A ZentrIT" class="h-14 w-auto object-contain transition-all duration-300" />
+      <div class="h-8 w-px transition-all duration-500" id="navDivider"></div>
+      <div class="flex flex-col leading-tight">
+        <span class="text-sm tracking-[0.2em] uppercase font-sans font-semibold transition-all duration-500" id="navTitle">
+          Zentr<span class="text-zt-primary font-bold">IT</span>
+        </span>
+        <span class="text-[0.5rem] tracking-[0.3em] uppercase font-mono transition-all duration-500" id="navSub">arquitectura digital</span>
+      </div>
+    </a>
+
+    <div class="flex items-center gap-1">
+      <div class="hidden md:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="nav-link relative px-5 py-2.5 text-xs tracking-[0.15em] uppercase font-semibold transition-all duration-300 hover:text-zt-primary active:text-zt-primary active:scale-95 after:absolute after:bottom-0 after:left-5 after:right-5 after:h-[2.5px] after:bg-zt-primary after:scale-x-0 after:origin-center hover:after:scale-x-100 active:after:scale-x-100 after:transition-transform after:duration-300 after:rounded-full"
+          >
+            <span class="inline-block transition-transform duration-300 group-hover:translate-y-[-2px]">{link.label}</span>
+          </a>
+        ))}
+      </div>
+      <a
+        href="#contacto"
+        class="relative text-xs tracking-widest uppercase font-bold text-white px-7 py-3.5 rounded-xl overflow-hidden shadow-lg shadow-zt-primary/25 transition-all duration-300 hover:shadow-xl hover:shadow-zt-primary/40 hover:scale-105 active:scale-95"
+        style="background: linear-gradient(135deg, #0a7f5a 0%, #14b88a 100%);"
+      >
+        <span class="relative z-10 flex items-center gap-2">
+          Iniciar Proyecto
+          <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('navbar');
+  const navDivider = document.getElementById('navDivider');
+  const navTitle = document.getElementById('navTitle');
+  const navSub = document.getElementById('navSub');
+  const navLinkEls = document.querySelectorAll('.nav-link');
+
+  const updateNav = () => {
+    const heroEnd = window.innerHeight * 0.85;
+    const pastHero = window.scrollY > heroEnd;
+
+    if (pastHero) {
+      nav.style.background = '#111418';
+      nav.style.borderBottom = 'none';
+      nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.12)';
+      navTitle.style.color = '#e5e7eb';
+      navSub.style.color = 'rgba(255,255,255,0.3)';
+      navDivider.style.background = 'rgba(255,255,255,0.12)';
+      navLinkEls.forEach(el => el.style.color = 'rgba(229,231,235,0.7)');
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.borderBottom = 'none';
+      nav.style.boxShadow = 'none';
+      navTitle.style.color = '#111418';
+      navSub.style.color = '#6b7280';
+      navDivider.style.background = '#e5e7eb';
+      navLinkEls.forEach(el => el.style.color = '#111418');
+    }
+  };
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+</script>

@@ -1,0 +1,36 @@
+---
+const steps = [
+  { num: "01", title: "Descubrimiento", desc: "Entendemos tu negocio, objetivos y usuarios para definir el alcance del proyecto con claridad quirúrgica." },
+  { num: "02", title: "Prototipado", desc: "Diseñamos la experiencia de usuario y validamos cada flujo antes de escribir una sola línea de código." },
+  { num: "03", title: "Desarrollo", desc: "Construimos con tecnologías modernas en ciclos cortos, entregando valor tangible desde el primer sprint." },
+  { num: "04", title: "Lanzamiento", desc: "Desplegamos en producción con monitoreo continuo, cero downtime y estrategia de rollout controlado." },
+  { num: "05", title: "Soporte", desc: "Acompañamiento post-lanzamiento con mantenimiento proactivo, mejoras continuas y disponibilidad 24/7." },
+];
+---
+
+<section id="proceso" class="py-28 relative">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+    <div class="mb-16 fade-up">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-8 h-px bg-zt-primary/60"></span>
+        <span class="text-[10px] font-mono text-zt-primary font-semibold uppercase tracking-[0.25em]">04 / Proceso</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-display font-bold text-zt-dark leading-tight">
+        De la idea al <span class="accent-gradient-text">lanzamiento</span>
+      </h2>
+    </div>
+
+    <div class="relative grid grid-cols-1 md:grid-cols-5 gap-6">
+      {steps.map((step, i) => (
+        <div class="fade-up relative bg-white/40 border border-zt-border/40 rounded-2xl p-6 md:p-8 transition-all duration-300 hover:border-zt-primary/20 hover:bg-white/80 card-hover">
+          <span class="text-4xl font-display font-black text-zt-border/40 block mb-4">{step.num}</span>
+          <h3 class="font-display font-bold text-zt-dark text-lg mb-3">{step.title}</h3>
+          <p class="text-sm text-zt-text/60 leading-relaxed">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

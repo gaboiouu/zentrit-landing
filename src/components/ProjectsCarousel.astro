@@ -1,0 +1,251 @@
+---
+const projects = [
+  {
+    title: "Sistema POS",
+    subtitle: "Restaurante",
+    desc: "Sistema de punto de venta completo con gestión de pedidos, inventarios, reportes de ventas y menú digital interactivo.",
+    detail: "Panel táctil intuitivo, gestión de mesas, comandas directas a cocina, control de inventarios y cierre de caja automático. Integración con impresoras térmicas y lectores de tarjetas.",
+    tags: ["POO", "SQL", "SharpDevelop"],
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop",
+  },
+  {
+    title: "E-Commerce",
+    subtitle: "Retail",
+    desc: "Landing page y tienda en línea con pasarela de pago, carrito de compras y panel administrativo.",
+    detail: "Plataforma completa con catálogo dinámico, carrito persistente, múltiples pasarelas de pago, panel de administración con métricas de ventas y gestión de inventario en tiempo real.",
+    tags: ["Laravel", "MySQL", "JavaScript"],
+    img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=250&fit=crop",
+  },
+  {
+    title: "Gestión de Fletes",
+    subtitle: "Plataforma",
+    desc: "Asignación automática de viajes en una flotilla de 40+ camiones con tracking satelital y reportes en PDF.",
+    detail: "Algoritmo de asignación inteligente, geocercas, tracking GPS en tiempo real, firma digital de recibos, facturación automática y dashboard ejecutivo con KPIs de flotilla.",
+    tags: ["PHP", "JavaScript", "SQLite"],
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=250&fit=crop",
+  },
+  {
+    title: "Portal Metrobus",
+    subtitle: "Transporte",
+    desc: "Información de rutas en tiempo real con feeds REST, mapas dinámicos y tiempos de espera precisos.",
+    detail: "Consumo de APIs abiertas de transporte, visualización de rutas en mapa interactivo, cálculo de tiempos de llegada, alertas de servicio y modo offline con caché inteligente.",
+    tags: ["PHP", "Rest API", "JS"],
+    img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=400&h=250&fit=crop",
+  },
+  {
+    title: "Venta de Equipo",
+    subtitle: "E-Commerce",
+    desc: "Tienda en línea responsable con control de inventario, pasarela de pago y catálogo de productos.",
+    detail: "Catálogo con filtros avanzados, carrito de compras, checkout optimizado, panel de administración con control de inventario, órdenes y envíos integrados.",
+    tags: ["PHP", "API", "MySQL"],
+    img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=250&fit=crop",
+  },
+  {
+    title: "Render Track",
+    subtitle: "Producción",
+    desc: "Monitor de equipos de renderizado con tiempo real, asignación automática de trabajos y notificaciones.",
+    detail: "Cola de trabajos priorizada, monitoreo en vivo de GPUs/CPUs, asignación automática por capacidad, notificaciones push al finalizar render y reportes de productividad.",
+    tags: ["Node.js", "WebSocket", "React"],
+    img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop",
+  },
+  {
+    title: "Admin Hotel",
+    subtitle: "Sistema",
+    desc: "Suite de gestión hotelera: reservaciones, check-in/out, limpieza, facturación y reportes ejecutivos.",
+    detail: "Motor de reservas con disponibilidad en tiempo real, check-in/out exprés, asignación de limpieza, integración con booking engines, facturación automatizada y reportes de ocupación.",
+    tags: ["PHP", "SQL", "JS"],
+    img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop",
+  },
+];
+---
+
+<section id="proyectos" class="py-28 relative overflow-hidden">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 fade-up">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-px bg-zt-primary/60"></span>
+          <span class="text-[10px] font-mono text-zt-primary font-semibold uppercase tracking-[0.25em]">07 / Portafolio</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-zt-dark leading-tight">
+          Proyectos que<br />
+          <span class="accent-gradient-text">hablan solos</span>
+        </h2>
+      </div>
+      <p class="text-zt-text/60 max-w-sm text-sm font-light leading-relaxed">
+        Desliza o haz clic en un proyecto para ver más detalles.
+      </p>
+    </div>
+  </div>
+
+  <div class="coverflow-wrapper">
+    <div class="coverflow-track" id="coverflowTrack">
+      {projects.map((p, i) => (
+        <div
+          class="coverflow-card rounded-2xl bg-white shadow-xl shadow-black/5 overflow-hidden cursor-pointer"
+          data-index={i}
+          data-title={p.title}
+          data-subtitle={p.subtitle}
+          data-desc={p.desc}
+          data-detail={p.detail}
+          data-img={p.img}
+          data-tags={p.tags.join(",")}
+        >
+          <div class="h-44 md:h-52 overflow-hidden bg-zt-surface">
+            <img
+              src={p.img}
+              alt={p.title}
+              class="w-full h-full object-cover pointer-events-none"
+              loading="lazy"
+              draggable="false"
+            />
+          </div>
+          <div class="flex flex-col p-6 md:p-8" style="background: linear-gradient(to bottom, #ffffff, #f5f7f6);">
+            <div class="flex items-center gap-2.5 mb-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-zt-primary animate-pulse"></span>
+              <span class="text-[9px] font-mono font-semibold text-zt-text/40 uppercase tracking-[0.2em]">{p.subtitle}</span>
+            </div>
+            <h3 class="text-xl md:text-2xl font-display font-bold text-zt-dark mb-2">{p.title}</h3>
+            <p class="text-sm text-zt-text/60 leading-relaxed">{p.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="coverflow-dots" id="coverflowDots"></div>
+  </div>
+</section>
+
+<div id="projectModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 pointer-events-none opacity-0 transition-all duration-500" style="background: rgba(0,0,0,0); backdrop-filter: blur(0px);">
+  <div id="modalBackdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+  <div id="modalContent" class="relative bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform scale-95 transition-all duration-500 pointer-events-auto">
+    <button id="modalClose" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/80 backdrop-blur border border-zt-border/60 flex items-center justify-center text-zt-text hover:text-zt-dark hover:border-zt-primary/30 transition-all z-10 shadow-sm">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
+    <div id="modalImage" class="h-52 md:h-64 bg-zt-surface overflow-hidden rounded-t-2xl"></div>
+    <div class="p-8 md:p-10">
+      <div class="flex items-center gap-2.5 mb-3">
+        <span class="w-1.5 h-1.5 rounded-full bg-zt-primary animate-pulse"></span>
+        <span id="modalSubtitle" class="text-[10px] font-mono font-semibold text-zt-primary uppercase tracking-[0.2em]"></span>
+      </div>
+      <h3 id="modalTitle" class="text-2xl md:text-3xl font-display font-bold text-zt-dark mb-4"></h3>
+      <p id="modalDetail" class="text-zt-text/70 leading-relaxed mb-6"></p>
+      <div id="modalTags" class="flex flex-wrap gap-2"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const wrapper = document.querySelector('.coverflow-wrapper');
+  const track = document.getElementById('coverflowTrack');
+  const cards = Array.from(track.querySelectorAll('.coverflow-card'));
+  const dotsContainer = document.getElementById('coverflowDots');
+  const total = cards.length;
+  let current = 0;
+  let autoplayTimer = null;
+  const gap = 24;
+
+  const modal = document.getElementById('projectModal');
+  const modalContent = document.getElementById('modalContent');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalClose = document.getElementById('modalClose');
+  const modalImage = document.getElementById('modalImage');
+  const modalSubtitle = document.getElementById('modalSubtitle');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDetail = document.getElementById('modalDetail');
+  const modalTags = document.getElementById('modalTags');
+
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'coverflow-dot';
+    dot.setAttribute('data-index', i);
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  const update = () => {
+    const cardW = cards[0].offsetWidth;
+    cards.forEach((card, i) => {
+      const dist = i - current;
+      const abs = Math.abs(dist);
+      const scale = 1 - abs * 0.18;
+      const translateZ = -abs * 130;
+      const rotateY = dist * -14;
+      const opacity = Math.max(1 - abs * 0.28, 0.2);
+      const blur = abs * 3;
+
+      card.style.transform = `perspective(1200px) translateZ(${translateZ}px) scale(${Math.max(scale, 0.5)}) rotateY(${rotateY}deg)`;
+      card.style.opacity = opacity;
+      card.style.filter = `blur(${blur}px)`;
+      card.style.zIndex = total - abs;
+    });
+    const dots = dotsContainer.querySelectorAll('.coverflow-dot');
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+  };
+
+  const goTo = (index) => {
+    current = ((index % total) + total) % total;
+    const cardW = cards[0].offsetWidth;
+    const wrapperW = wrapper.offsetWidth;
+    const offset = -(current * (cardW + gap)) + (wrapperW / 2 - cardW / 2);
+    track.style.transform = `translateX(${offset}px)`;
+    requestAnimationFrame(update);
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => goTo(current + 1), 3000);
+  };
+  const stopAutoplay = () => { if (autoplayTimer) clearInterval(autoplayTimer); };
+
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      stopAutoplay();
+      if (i !== current) {
+        goTo(i);
+        setTimeout(startAutoplay, 3000);
+        return;
+      }
+      modalImage.innerHTML = `<img src="${card.dataset.img}" alt="${card.dataset.title}" class="w-full h-full object-cover" />`;
+      modalSubtitle.textContent = card.dataset.subtitle;
+      modalTitle.textContent = card.dataset.title;
+      modalDetail.textContent = card.dataset.detail || card.dataset.desc;
+      modalTags.innerHTML = card.dataset.tags.split(",").map(t =>
+        `<span class="px-3 py-1.5 bg-zt-surface border border-zt-border/50 text-[10px] font-mono text-zt-text/60 rounded-lg">${t}</span>`
+      ).join('');
+      modal.style.pointerEvents = 'auto';
+      modal.style.opacity = '1';
+      modal.style.background = 'rgba(0,0,0,0.4)';
+      modal.style.backdropFilter = 'blur(6px)';
+      modalContent.style.transform = 'scale(1)';
+    });
+  });
+
+  const closeModal = () => {
+    modal.style.opacity = '0';
+    modal.style.background = 'rgba(0,0,0,0)';
+    modal.style.backdropFilter = 'blur(0px)';
+    modalContent.style.transform = 'scale(0.95)';
+    modal.style.pointerEvents = 'none';
+    startAutoplay();
+  };
+  modalBackdrop.addEventListener('click', closeModal);
+  modalClose.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  new ResizeObserver(() => goTo(current)).observe(wrapper);
+  goTo(0);
+  startAutoplay();
+
+  let touchStartX = 0;
+  track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; stopAutoplay(); }, { passive: true });
+  track.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+    startAutoplay();
+  }, { passive: true });
+
+  track.addEventListener('mouseenter', stopAutoplay);
+  track.addEventListener('mouseleave', startAutoplay);
+</script>

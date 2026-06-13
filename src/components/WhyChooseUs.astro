@@ -1,0 +1,67 @@
+---
+import { Target, Zap, ShieldCheck, MessageSquareText, TrendingUp, Wrench } from "lucide-react";
+
+const reasons = [
+  {
+    icon: Target,
+    title: "Enfoque en resultados",
+    desc: "No medimos éxito por líneas de código, sino por el impacto real en tu negocio.",
+  },
+  {
+    icon: Zap,
+    title: "Entregas rápidas",
+    desc: "Prototipos funcionales en semanas, no meses. Iteramos hasta alcanzar la perfección.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Calidad garantizada",
+    desc: "Código limpio, pruebas automatizadas y buenas prácticas de seguridad desde el inicio.",
+  },
+  {
+    icon: MessageSquareText,
+    title: "Comunicación directa",
+    desc: "Nada de intermediarios. Hablas directamente con quien construye tu proyecto.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Escalabilidad real",
+    desc: "Tu solución crece contigo. Arquitecturas preparadas para escalar sin reescribir.",
+  },
+  {
+    icon: Wrench,
+    title: "Soporte continuo",
+    desc: "No desaparecemos después del lanzamiento. Estamos para lo que necesites 24/7.",
+  },
+];
+---
+
+<section class="py-28 relative">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 fade-up">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-8 h-px bg-zt-primary/60"></span>
+          <span class="text-[10px] font-mono text-zt-primary font-semibold uppercase tracking-[0.25em]">06 / Por qué nosotros</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-zt-dark leading-tight">
+          Más que devs,<br class="hidden md:block" />
+          <span class="accent-gradient-text">socios estratégicos</span>
+        </h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {reasons.map((r) => (
+        <div class="group bg-white/60 backdrop-blur border border-zt-border/50 rounded-xl p-6 md:p-8 transition-all duration-300 card-hover hover:border-zt-primary/20">
+          <div class="w-11 h-11 rounded-xl bg-zt-primary/10 flex items-center justify-center mb-4 group-hover:bg-zt-primary/20 transition-colors duration-300">
+            <r.icon class="w-5 h-5 text-zt-primary" strokeWidth={1.5} />
+          </div>
+          <h3 class="font-display font-bold text-zt-dark text-lg mb-2 group-hover:text-zt-primary transition-colors duration-300">{r.title}</h3>
+          <p class="text-sm text-zt-text/60 leading-relaxed">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

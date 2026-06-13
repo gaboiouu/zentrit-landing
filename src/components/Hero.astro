@@ -1,0 +1,59 @@
+---
+import heroImg from "../assets/img1.png";
+---
+
+<section class="relative min-h-screen flex overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute top-[-20%] left-[-5%] w-[50%] h-[60%] bg-gradient-to-bl from-zt-primary/8 via-zt-primary/2 to-transparent rounded-full blur-[120px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(10,127,90,0.02),transparent_60%)]"></div>
+  </div>
+
+  <div class="absolute top-0 right-0 w-1/2 h-full overflow-hidden">
+    <div class="absolute inset-0 z-10 pointer-events-none" style="background: linear-gradient(to right, #FFFFFF 0%, rgba(255,255,255,0.3) 25%, transparent 45%);"></div>
+    <img
+      src={heroImg.src}
+      alt="A&A ZentrIT"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+  </div>
+
+  <div class="w-full grid grid-cols-1 lg:grid-cols-2 relative z-20">
+    <div class="flex items-center min-h-[calc(100vh-96px)] px-6 md:px-12 lg:pl-12 xl:pl-16 2xl:pl-24 pt-24">
+      <div class="max-w-xl w-full fade-up">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-zt-primary animate-pulse glow-accent"></span>
+          <span class="text-[10px] tracking-[0.25em] uppercase text-zt-primary font-mono font-semibold">Arquitectura Digital</span>
+        </div>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[4.5rem] font-display font-extrabold tracking-tight leading-[1.02] text-zt-dark mb-6">
+          Diseño de
+          <span class="accent-gradient-text">precisión.</span>
+          <br />
+          Ingeniería
+          <span class="text-zt-dark">implacable.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-zt-text max-w-lg leading-relaxed font-light mb-10">
+          Aarón y Adrián fundaron ZentrIT para empresas que no aceptan concesiones.
+          Desarrollamos infraestructura digital: desde plataformas E-Commerce de alto rendimiento
+          hasta sistemas ERP diseñados a medida.
+        </p>
+        <div class="flex flex-wrap gap-4 items-center">
+          <a
+            href="#contacto"
+            class="relative inline-flex items-center gap-2.5 text-sm tracking-widest uppercase font-bold text-white px-8 py-4 rounded-xl overflow-hidden shadow-lg shadow-zt-primary/20 transition-all duration-300 hover:shadow-xl hover:shadow-zt-primary/30 hover:scale-[1.02]"
+            style="background: linear-gradient(135deg, #0a7f5a, #14b88a);"
+          >
+            <span class="relative z-10">Iniciar Proyecto</span>
+            <svg class="relative z-10 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+          <a
+            href="#proyectos"
+            class="group inline-flex items-center gap-2.5 text-sm tracking-widest uppercase font-semibold text-zt-dark bg-white/80 backdrop-blur border border-zt-border/60 px-8 py-4 rounded-xl transition-all duration-300 hover:border-zt-primary/30 hover:shadow-lg hover:shadow-zt-primary/5 active:text-zt-primary active:border-zt-primary active:bg-zt-primary/5"
+          >
+            <span>Ver Casos</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

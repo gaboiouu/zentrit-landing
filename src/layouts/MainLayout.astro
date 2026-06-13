@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+import ZentiAssistant from "../components/ZentiAssistant.jsx";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/zt.png" />
+    <link rel="apple-touch-icon" href="/zt.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>A&amp;A ZentrIT — Soluciones digitales que impulsan tu negocio</title>
+    <meta name="description" content="Desarrollo de software, landing pages, e-commerce, sistemas web, apps móviles y automatización para empresas y emprendedores." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="bg-white text-zt-text font-sans antialiased selection:bg-zt-primary selection:text-white">
+    <slot />
+    <ZentiAssistant client:idle />
+  </body>
+</html>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1,
+  };
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+</script>
