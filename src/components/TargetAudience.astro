@@ -1,43 +1,32 @@
 ---
-import { Rocket, Building2, Store, CookingPot, Package, Palette } from "lucide-react";
-
 const audiences = [
-  { icon: Rocket, title: "Emprendedores", desc: "Presencia digital profesional desde el día uno." },
-  { icon: Building2, title: "Empresas", desc: "Automatización de procesos internos y externos." },
-  { icon: Store, title: "Negocios locales", desc: "Más clientes con landing optimizadas." },
-  { icon: CookingPot, title: "Restaurantes", desc: "Reservas, delivery y carta digital integrados." },
-  { icon: Package, title: "Distribuidoras", desc: "Control de ventas, inventario y logística." },
-  { icon: Palette, title: "Marcas & Agencias", desc: "Landings visuales que convierten." },
+  { num: "A", title: "Emprendedores", desc: "Una base digital profesional desde el primer día." },
+  { num: "B", title: "Empresas", desc: "Operaciones conectadas, medibles y escalables." },
+  { num: "C", title: "Negocios locales", desc: "Más demanda con una presencia enfocada en conversión." },
+  { num: "D", title: "Restaurantes", desc: "Reservas, pedidos y operación en un solo ecosistema." },
+  { num: "E", title: "Distribuidoras", desc: "Control de ventas, inventario y logística." },
+  { num: "F", title: "Marcas & agencias", desc: "Experiencias visuales listas para competir." },
 ];
 ---
 
-<section class="py-28 relative">
-  <div class="absolute inset-0 bg-gradient-to-b from-zt-surface/30 to-transparent -z-10"></div>
-  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zt-border to-transparent"></div>
-
-  <div class="max-w-[1400px] mx-auto px-6 md:px-12">
-    <div class="mb-14 fade-up">
-      <div class="flex items-center gap-3 mb-4">
-        <span class="w-8 h-px bg-zt-primary/60"></span>
-        <span class="text-[10px] font-mono text-zt-primary font-semibold uppercase tracking-[0.25em]">03 / Audiencia</span>
-      </div>
-      <h2 class="text-4xl md:text-5xl font-display font-bold text-zt-dark leading-tight">
-        Diseñado para negocios<br class="hidden md:block" />
-        que quieren <span class="accent-gradient-text">crecer</span>
-      </h2>
+<section class="swiss-section bg-zt-primary text-white">
+  <div class="swiss-container">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 mb-16">
+      <div class="lg:col-span-3 font-mono text-xs uppercase tracking-[0.16em] text-white/70">03 / Para quién</div>
+      <h2 class="lg:col-span-9 swiss-heading !max-w-[14ch]">Para negocios que necesitan avanzar, no decorar.</h2>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-      {audiences.map((a) => (
-        <div class="group bg-white/60 backdrop-blur border border-zt-border/50 rounded-xl p-6 flex items-start gap-4 transition-all duration-300 card-hover">
-          <div class="w-10 h-10 rounded-lg bg-zt-primary/10 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-zt-primary/20 transition-colors duration-300">
-            <a.icon class="w-5 h-5 text-zt-primary" strokeWidth={1.5} />
-          </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-white">
+      {audiences.map((audience) => (
+        <article class="min-h-52 p-6 md:p-8 border-r border-b border-white flex flex-col justify-between hover:bg-white hover:text-black transition-colors fade-up">
+          <span class="font-mono text-xs uppercase tracking-widest">{audience.num}</span>
           <div>
-            <h3 class="font-display font-bold text-zt-dark mb-1.5 group-hover:text-zt-primary transition-colors duration-300">{a.title}</h3>
-            <p class="text-sm text-zt-text/60 leading-relaxed">{a.desc}</p>
+            <h3 class="text-2xl font-bold tracking-[-0.04em] mb-2">{audience.title}</h3>
+            <p class="text-sm leading-relaxed opacity-70 max-w-xs">{audience.desc}</p>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
+
