@@ -2,7 +2,6 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
-import Philosophy from "../components/Philosophy.astro";
 import Services from "../components/Services.astro";
 import TargetAudience from "../components/TargetAudience.astro";
 import ProjectsCarousel from "../components/ProjectsCarousel.astro";
@@ -18,7 +17,6 @@ import WhatsAppButton from "../components/WhatsAppButton.jsx";
   <Navbar />
   <main>
     <Hero />
-    <Philosophy />
     <Services />
     <TargetAudience />
     <ProjectsCarousel />
@@ -26,16 +24,18 @@ import WhatsAppButton from "../components/WhatsAppButton.jsx";
     <Technologies />
     <WhyChooseUs />
 
-    <section id="contacto" class="border-t border-black bg-[#f5f5f0]">
-      <div class="swiss-container grid grid-cols-1 lg:grid-cols-12">
-        <div class="lg:col-span-5 bg-black text-white p-7 md:p-12 lg:border-r border-black flex flex-col justify-between min-h-[32rem] fade-up">
+    <section id="contacto" class="swiss-section !py-0 bg-[#d3d2bf] overflow-hidden">
+      <div class="swiss-container grid grid-cols-1 lg:grid-cols-12 border-x-[3px] border-black">
+        <div class="lg:col-span-5 relative bg-black text-white p-6 md:p-10 lg:border-r-[3px] border-black flex flex-col justify-between min-h-[38rem] fade-up overflow-hidden halftone">
+          <div class="ink-splatter -right-8 top-24 opacity-35 invert"></div>
           <div>
-            <div class="font-mono text-[10px] uppercase tracking-[0.18em] text-zt-mint">08 / Contacto</div>
-            <h2 class="mt-8 text-5xl md:text-7xl font-black tracking-[-0.07em] leading-[0.88]">Hagamos algo<br /><span class="text-zt-mint">útil.</span></h2>
+            <span class="zine-label !bg-zt-primary">07 / Contacto / 連絡</span>
+            <div class="zine-jp text-7xl md:text-9xl text-white/10 leading-none mt-4" aria-hidden="true">連絡</div>
+            <h2 class="relative z-10 mt-[-2rem] font-display text-5xl md:text-7xl uppercase tracking-[-0.07em] leading-[0.8]">Hagamos<br />algo<br /><span class="text-zt-mint">útil.</span></h2>
           </div>
-          <div class="grid grid-cols-2 gap-6 items-end mt-12">
-            <img src="/zenti.png" alt="Zenti, asistente de ZentrIT" class="zenti-mascot w-full max-w-52 object-contain" />
-            <div class="font-mono text-[9px] md:text-[10px] uppercase tracking-widest leading-relaxed text-white/60">
+          <div class="relative z-10 grid grid-cols-2 gap-4 items-end mt-12 border-2 border-white p-3 bg-black">
+            <img src="/zenti.png" alt="Zenti, asistente de ZentrIT" class="zenti-mascot w-full max-w-56 object-contain bg-[#e9e8d8]" />
+            <div class="font-mono text-[8px] md:text-[9px] uppercase tracking-widest leading-relaxed text-white/65">
               Chimbote, Perú<br />
               Lun–Vie / 09–18h<br />
               Respuesta / 24h
@@ -43,9 +43,10 @@ import WhatsAppButton from "../components/WhatsAppButton.jsx";
           </div>
         </div>
 
-        <div class="lg:col-span-7 p-7 md:p-12 lg:p-16 fade-up">
+        <div class="lg:col-span-7 p-5 md:p-10 lg:p-12 speed-lines fade-up">
           <div class="max-w-2xl">
-            <p class="text-xl md:text-2xl font-semibold tracking-[-0.035em] leading-snug mb-12">Cuéntanos el problema, el contexto y el resultado que necesitas. Nosotros ordenamos el resto.</p>
+            <div class="zine-label mb-5">Project intake / 受付</div>
+            <p class="font-display text-3xl md:text-5xl uppercase tracking-[-0.06em] leading-[0.86] mb-10">Cuéntanos el problema. <span class="text-zt-primary">Nosotros ordenamos el resto.</span></p>
             <ContactForm client:load />
           </div>
         </div>

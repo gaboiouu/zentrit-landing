@@ -1,40 +1,44 @@
 ---
 const services = [
-  { num: "01", title: "Sistemas & ERPs", desc: "Software a medida para operaciones, inventarios, ventas y datos empresariales.", tags: ["Backend", "Datos", "APIs"] },
-  { num: "02", title: "E-Commerce", desc: "Tiendas de alto rendimiento diseñadas para reducir fricción y aumentar conversión.", tags: ["Commerce", "Pagos", "CRO"] },
-  { num: "03", title: "Web & Landing", desc: "Sitios que comunican autoridad, capturan demanda y cargan con precisión.", tags: ["UX/UI", "SEO", "Motion"] },
-  { num: "04", title: "Apps móviles", desc: "Experiencias iOS y Android conectadas a servicios en la nube y datos en tiempo real.", tags: ["iOS", "Android", "Cloud"] },
-  { num: "05", title: "Dashboards", desc: "Paneles operativos con indicadores claros para tomar mejores decisiones.", tags: ["KPI", "Analytics", "Realtime"] },
-  { num: "06", title: "Automatización", desc: "Integraciones que conectan herramientas y eliminan tareas manuales repetitivas.", tags: ["APIs", "Webhooks", "Flujos"] },
+  { num: "01", jp: "業務", title: "Sistemas & ERPs", desc: "Software a medida para operaciones, inventarios, ventas y datos empresariales.", tags: ["Backend", "Datos", "APIs"] },
+  { num: "02", jp: "商取引", title: "E-Commerce", desc: "Tiendas de alto rendimiento diseñadas para reducir fricción y aumentar conversión.", tags: ["Commerce", "Pagos", "CRO"] },
+  { num: "03", jp: "ウェブ", title: "Web & Landing", desc: "Sitios que comunican autoridad, capturan demanda y cargan con precisión.", tags: ["UX/UI", "SEO", "Motion"] },
+  { num: "04", jp: "アプリ", title: "Apps móviles", desc: "Experiencias iOS y Android conectadas a servicios y datos en tiempo real.", tags: ["iOS", "Android", "Cloud"] },
+  { num: "05", jp: "分析", title: "Dashboards", desc: "Paneles operativos con indicadores claros para tomar mejores decisiones.", tags: ["KPI", "Analytics", "Realtime"] },
+  { num: "06", jp: "自動化", title: "Automatización", desc: "Integraciones que conectan herramientas y eliminan tareas repetitivas.", tags: ["APIs", "Webhooks", "Flujos"] },
 ];
 ---
 
-<section id="servicios" class="swiss-section bg-[#f5f5f0]">
+<section id="servicios" class="swiss-section bg-[#e9e8d8] overflow-hidden">
   <div class="swiss-container">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 mb-16">
       <div class="lg:col-span-8 fade-up">
-        <div class="swiss-kicker">02 / Capacidades</div>
+        <div class="swiss-kicker">01 / Capacidades / 能力</div>
         <h2 class="swiss-heading">Diseñamos el sistema. <span class="swiss-accent">Construimos el resultado.</span></h2>
       </div>
-      <p class="lg:col-span-4 lg:self-end swiss-copy !text-base lg:border-l border-black lg:pl-6 fade-up">
-        De la estrategia al lanzamiento, cada servicio se integra en una solución coherente y escalable.
-      </p>
+      <div class="lg:col-span-4 lg:self-end fade-up">
+        <div class="zine-panel p-4 bg-[#d3d2bf] rotate-1">
+          <span class="font-mono text-[9px] font-bold uppercase tracking-widest">Brief / 002</span>
+          <p class="mt-2 text-sm leading-relaxed">Estrategia, experiencia y tecnología integradas en una sola entrega.</p>
+        </div>
+      </div>
     </div>
 
-    <div class="border-t border-black">
+    <div class="border-t-[3px] border-x-[3px] border-black">
       {services.map((service) => (
-        <article class="group grid grid-cols-12 border-b border-black min-h-36 hover:bg-black hover:text-white transition-colors fade-up">
-          <div class="col-span-2 md:col-span-1 p-4 md:p-6 border-r border-black group-hover:border-white/40 font-mono text-xs text-zt-primary">
+        <article class="group grid grid-cols-12 border-b-[3px] border-black min-h-40 bg-[#e9e8d8] hover:bg-black hover:text-white transition-colors fade-up">
+          <div class="col-span-2 md:col-span-1 p-3 md:p-5 border-r-2 border-black group-hover:border-white font-display text-3xl md:text-5xl text-zt-primary">
             {service.num}
           </div>
-          <div class="col-span-10 md:col-span-4 p-4 md:p-6 md:border-r border-black group-hover:border-white/40 flex items-start">
-            <h3 class="text-2xl md:text-3xl font-bold tracking-[-0.045em]">{service.title}</h3>
+          <div class="col-span-10 md:col-span-4 p-4 md:p-6 md:border-r-2 border-black group-hover:border-white flex flex-col justify-between">
+            <span class="zine-jp text-xs opacity-50">{service.jp}</span>
+            <h3 class="font-display text-2xl md:text-4xl uppercase tracking-[-0.06em] leading-none">{service.title}</h3>
           </div>
-          <div class="col-span-12 md:col-span-4 p-4 md:p-6 border-t md:border-t-0 md:border-r border-black group-hover:border-white/40 text-sm md:text-base leading-relaxed text-zt-text group-hover:text-white/70">
+          <div class="col-span-12 md:col-span-4 p-4 md:p-6 border-t-2 md:border-t-0 md:border-r-2 border-black group-hover:border-white text-sm md:text-base font-medium leading-relaxed">
             {service.desc}
           </div>
-          <div class="col-span-12 md:col-span-3 p-4 md:p-6 border-t md:border-t-0 border-black flex flex-wrap content-start gap-x-3 gap-y-2">
-            {service.tags.map((tag) => <span class="font-mono text-[9px] uppercase tracking-widest">[{tag}]</span>)}
+          <div class="col-span-12 md:col-span-3 p-4 md:p-6 border-t-2 md:border-t-0 border-black group-hover:border-white flex flex-wrap content-center gap-2">
+            {service.tags.map((tag) => <span class="border-2 border-current px-2 py-1 font-mono text-[8px] uppercase tracking-widest">#{tag}</span>)}
           </div>
         </article>
       ))}

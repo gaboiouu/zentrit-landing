@@ -1,27 +1,36 @@
 ---
 const reasons = [
-  { num: "01", title: "Resultados", desc: "Medimos impacto en el negocio, no líneas de código." },
-  { num: "02", title: "Velocidad", desc: "Prototipos funcionales y decisiones rápidas." },
-  { num: "03", title: "Calidad", desc: "Código mantenible, pruebas y seguridad desde el inicio." },
-  { num: "04", title: "Comunicación", desc: "Contacto directo con quienes construyen el producto." },
-  { num: "05", title: "Escalabilidad", desc: "Arquitecturas preparadas para crecer sin rehacer." },
-  { num: "06", title: "Continuidad", desc: "Acompañamiento después del lanzamiento." },
+  { num: "01", jp: "成果", title: "Resultados", desc: "Medimos impacto en el negocio, no líneas de código." },
+  { num: "02", jp: "速度", title: "Velocidad", desc: "Prototipos funcionales y decisiones rápidas." },
+  { num: "03", jp: "品質", title: "Calidad", desc: "Código mantenible, pruebas y seguridad." },
+  { num: "04", jp: "対話", title: "Comunicación", desc: "Contacto directo con quienes construyen." },
+  { num: "05", jp: "拡張", title: "Escalabilidad", desc: "Arquitecturas preparadas para crecer." },
+  { num: "06", jp: "継続", title: "Continuidad", desc: "Acompañamiento después del lanzamiento." },
 ];
 ---
 
-<section class="swiss-section bg-white">
+<section class="swiss-section bg-[#e9e8d8] overflow-hidden">
   <div class="swiss-container grid grid-cols-1 lg:grid-cols-12 gap-y-14">
     <div class="lg:col-span-4 lg:pr-10 fade-up">
-      <div class="swiss-kicker">07 / Diferencial</div>
-      <h2 class="swiss-heading !text-[clamp(2.5rem,5vw,4.8rem)]">Socios del producto, no solo proveedores.</h2>
+      <div class="swiss-kicker">06 / Diferencial</div>
+      <h2 class="swiss-heading !text-[clamp(2.7rem,5vw,5rem)]">Socios del producto, <span class="swiss-accent">no proveedores.</span></h2>
+      <div class="mt-10 zine-panel p-4 bg-zt-primary text-white rotate-2">
+        <span class="zine-jp text-4xl">共同制作</span>
+        <span class="block font-mono text-[9px] uppercase tracking-widest mt-2">Build together</span>
+      </div>
     </div>
-    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:border-l border-black">
-      {reasons.map((reason) => (
-        <article class="min-h-48 p-6 border-t lg:border-t-0 border-b border-r border-black flex flex-col justify-between hover:bg-black hover:text-white transition-colors fade-up">
-          <span class="font-mono text-xs text-zt-primary">{reason.num}</span>
-          <div>
-            <h3 class="text-2xl font-bold tracking-[-0.04em] mb-2">{reason.title}</h3>
-            <p class="text-sm leading-relaxed opacity-65">{reason.desc}</p>
+
+    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:border-l-[3px] border-black">
+      {reasons.map((reason, index) => (
+        <article class:list={["relative min-h-52 p-6 border-t-[3px] lg:border-t-0 border-b-[3px] border-r-[3px] border-black flex flex-col justify-between overflow-hidden fade-up", index === 1 || index === 4 ? "bg-[#d3d2bf]" : "bg-[#e9e8d8]", "hover:bg-black hover:text-white transition-colors"]}>
+          <span class="absolute right-3 top-2 zine-jp text-6xl opacity-10">{reason.jp}</span>
+          <div class="relative z-10 flex justify-between items-start">
+            <span class="font-display text-4xl text-zt-primary">{reason.num}</span>
+            <span class="zine-jp text-xs">{reason.jp}</span>
+          </div>
+          <div class="relative z-10">
+            <h3 class="font-display text-2xl uppercase tracking-[-0.05em] mb-2">{reason.title}</h3>
+            <p class="text-sm font-medium leading-relaxed opacity-65">{reason.desc}</p>
           </div>
         </article>
       ))}

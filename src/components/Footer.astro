@@ -1,45 +1,56 @@
 ---
 const currentYear = new Date().getFullYear();
 const links = [
-  { label: "Núcleo", href: "#nucleo" },
   { label: "Servicios", href: "#servicios" },
   { label: "Proyectos", href: "#proyectos" },
   { label: "Proceso", href: "#proceso" },
 ];
 ---
 
-<footer class="bg-zt-primary text-white border-t border-black">
+<footer class="bg-black text-white border-t-[3px] border-black overflow-hidden">
+  <div class="h-10 bg-zt-primary border-b-2 border-white marquee flex items-center font-mono text-[9px] font-bold uppercase tracking-[0.14em]">
+    <div class="marquee-track">
+      <span class="px-4">ZENTRIT DIGITAL STUDIO — 設計・開発・運用 — CHIMBOTE / PERÚ — </span>
+      <span class="px-4" aria-hidden="true">ZENTRIT DIGITAL STUDIO — 設計・開発・運用 — CHIMBOTE / PERÚ — </span>
+      <span class="px-4" aria-hidden="true">ZENTRIT DIGITAL STUDIO — 設計・開発・運用 — CHIMBOTE / PERÚ — </span>
+    </div>
+  </div>
+
   <div class="swiss-container">
-    <div class="grid grid-cols-1 md:grid-cols-12 border-l border-white/60">
-      <div class="md:col-span-6 p-7 md:p-12 border-r border-b border-white/60 min-h-80 flex flex-col justify-between">
-        <a href="/" class="inline-flex items-center gap-4 w-fit" aria-label="ZentrIT — Inicio">
-          <img src="/zt.png" alt="" class="h-14 w-auto bg-white" />
-          <span class="text-2xl font-black tracking-[-0.05em]">ZentrIT</span>
+    <div class="grid grid-cols-1 md:grid-cols-12 border-x-2 border-white">
+      <div class="md:col-span-6 relative p-6 md:p-10 border-r-2 border-b-2 border-white min-h-80 flex flex-col justify-between overflow-hidden">
+        <div class="absolute right-2 top-0 zine-jp text-8xl md:text-9xl text-white/5 select-none" aria-hidden="true">中心</div>
+        <a href="/" class="inline-flex items-center gap-4 w-fit relative z-10" aria-label="ZentrIT — Inicio">
+          <img src="/zt.png" alt="" class="h-14 w-auto bg-[#e9e8d8]" />
+          <div>
+            <span class="block font-display text-3xl uppercase tracking-[-0.06em]">ZentrIT</span>
+            <span class="font-mono text-[8px] uppercase tracking-widest text-white/50">Digital architecture</span>
+          </div>
         </a>
-        <p class="text-3xl md:text-5xl font-bold tracking-[-0.06em] leading-[0.94] max-w-lg">Diseño claro.<br />Ingeniería sólida.</p>
+        <p class="relative z-10 font-display text-4xl md:text-6xl uppercase tracking-[-0.07em] leading-[0.8]">Diseño claro.<br /><span class="text-zt-mint">Ingeniería sólida.</span></p>
       </div>
 
-      <nav class="md:col-span-3 border-r border-b border-white/60" aria-label="Navegación del pie">
-        <div class="p-5 font-mono text-[9px] uppercase tracking-widest border-b border-white/60">Mapa</div>
+      <nav class="md:col-span-3 border-r-2 border-b-2 border-white" aria-label="Navegación del pie">
+        <div class="p-4 font-mono text-[9px] uppercase tracking-widest border-b-2 border-white bg-zt-primary">Index / 目次</div>
         {links.map((link, index) => (
-          <a href={link.href} class="flex items-center justify-between p-5 border-b border-white/60 last:border-b-0 font-mono text-xs uppercase tracking-wider hover:bg-white hover:text-black transition-colors">
-            <span>{link.label}</span><span>{String(index + 1).padStart(2, "0")}</span>
+          <a href={link.href} class="flex items-center justify-between p-5 border-b-2 border-white last:border-b-0 font-mono text-[11px] uppercase tracking-wider hover:bg-white hover:text-black transition-colors">
+            <span>{link.label}</span><span>0{index + 1} ↗</span>
           </a>
         ))}
       </nav>
 
-      <div class="md:col-span-3 border-r border-b border-white/60">
-        <div class="p-5 font-mono text-[9px] uppercase tracking-widest border-b border-white/60">Contacto</div>
-        <a href="mailto:zentritsoft@gmail.com" class="block p-5 border-b border-white/60 text-sm hover:bg-white hover:text-black transition-colors break-all">zentritsoft@gmail.com</a>
-        <a href="tel:+51933070052" class="block p-5 border-b border-white/60 text-sm hover:bg-white hover:text-black transition-colors">+51 933 070 052</a>
-        <a href="tel:+51912077181" class="block p-5 border-b border-white/60 text-sm hover:bg-white hover:text-black transition-colors">+51 912 077 181</a>
-        <a href="https://instagram.com/zentritsoft" target="_blank" rel="noopener noreferrer" class="block p-5 text-sm hover:bg-white hover:text-black transition-colors">Instagram ↗</a>
+      <div class="md:col-span-3 border-r-2 border-b-2 border-white">
+        <div class="p-4 font-mono text-[9px] uppercase tracking-widest border-b-2 border-white bg-zt-primary">Signal / 連絡</div>
+        <a href="mailto:zentritsoft@gmail.com" class="block p-5 border-b-2 border-white text-sm hover:bg-white hover:text-black transition-colors break-all">zentritsoft@gmail.com</a>
+        <a href="tel:+51933070052" class="block p-5 border-b-2 border-white font-mono text-xs hover:bg-white hover:text-black transition-colors">+51 933 070 052</a>
+        <a href="tel:+51912077181" class="block p-5 border-b-2 border-white font-mono text-xs hover:bg-white hover:text-black transition-colors">+51 912 077 181</a>
+        <a href="https://instagram.com/zentritsoft" target="_blank" rel="noopener noreferrer" class="block p-5 font-mono text-xs hover:bg-white hover:text-black transition-colors">Instagram ↗</a>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 border-l border-r border-white/60 font-mono text-[9px] uppercase tracking-widest">
-      <div class="p-4 border-b md:border-b-0 md:border-r border-white/60">© {currentYear} A&amp;A ZentrIT</div>
-      <div class="p-4 flex justify-between"><span>Chimbote · Perú</span><span>UTC−5</span></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 border-x-2 border-white font-mono text-[9px] uppercase tracking-widest">
+      <div class="p-4 border-b-2 md:border-b-0 md:border-r-2 border-white">© {currentYear} A&amp;A ZentrIT / All systems operational</div>
+      <div class="p-4 flex justify-between"><span>Chimbote · Perú</span><span>UTC−5 / ZT-END</span></div>
     </div>
   </div>
 </footer>
