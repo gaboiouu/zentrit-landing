@@ -1,11 +1,11 @@
 ---
 const services = [
-  { num: "01", jp: "業務", title: "Sistemas & ERPs", desc: "Software a medida para operaciones, inventarios, ventas y datos empresariales.", tags: ["Backend", "Datos", "APIs"] },
-  { num: "02", jp: "商取引", title: "E-Commerce", desc: "Tiendas de alto rendimiento diseñadas para reducir fricción y aumentar conversión.", tags: ["Commerce", "Pagos", "CRO"] },
-  { num: "03", jp: "ウェブ", title: "Web & Landing", desc: "Sitios que comunican autoridad, capturan demanda y cargan con precisión.", tags: ["UX/UI", "SEO", "Motion"] },
-  { num: "04", jp: "アプリ", title: "Apps móviles", desc: "Experiencias iOS y Android conectadas a servicios y datos en tiempo real.", tags: ["iOS", "Android", "Cloud"] },
-  { num: "05", jp: "分析", title: "Dashboards", desc: "Paneles operativos con indicadores claros para tomar mejores decisiones.", tags: ["KPI", "Analytics", "Realtime"] },
-  { num: "06", jp: "自動化", title: "Automatización", desc: "Integraciones que conectan herramientas y eliminan tareas repetitivas.", tags: ["APIs", "Webhooks", "Flujos"] },
+  { num: "01", title: "Sistemas & ERPs", desc: "Software a medida para operaciones, inventarios, ventas y datos empresariales.", tags: ["Backend", "Datos", "APIs"] },
+  { num: "02", title: "E-Commerce", desc: "Tiendas de alto rendimiento diseñadas para reducir fricción y aumentar conversión.", tags: ["Commerce", "Pagos", "CRO"] },
+  { num: "03", title: "Web & Landing", desc: "Sitios que comunican autoridad, capturan demanda y cargan con precisión.", tags: ["UX/UI", "SEO", "Motion"] },
+  { num: "04", title: "Apps móviles", desc: "Experiencias iOS y Android conectadas a servicios y datos en tiempo real.", tags: ["iOS", "Android", "Cloud"] },
+  { num: "05", title: "Dashboards", desc: "Paneles operativos con indicadores claros para tomar mejores decisiones.", tags: ["KPI", "Analytics", "Realtime"] },
+  { num: "06", title: "Automatización", desc: "Integraciones que conectan herramientas y eliminan tareas repetitivas.", tags: ["APIs", "Webhooks", "Flujos"] },
 ];
 ---
 
@@ -13,7 +13,7 @@ const services = [
   <div class="swiss-container">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 mb-16">
       <div class="lg:col-span-8 fade-up">
-        <div class="swiss-kicker">01 / Capacidades / 能力</div>
+        <div class="swiss-kicker">01 / Capacidades</div>
         <h2 class="swiss-heading">Diseñamos el sistema. <span class="swiss-accent">Construimos el resultado.</span></h2>
       </div>
       <div class="lg:col-span-4 lg:self-end fade-up">
@@ -30,8 +30,7 @@ const services = [
           <div class="col-span-2 md:col-span-1 p-3 md:p-5 border-r-2 border-black group-hover:border-white font-display text-3xl md:text-5xl text-zt-primary">
             {service.num}
           </div>
-          <div class="col-span-10 md:col-span-4 p-4 md:p-6 md:border-r-2 border-black group-hover:border-white flex flex-col justify-between">
-            <span class="zine-jp text-xs opacity-50">{service.jp}</span>
+          <div class="col-span-10 md:col-span-4 p-4 md:p-6 md:border-r-2 border-black group-hover:border-white flex flex-col justify-end">
             <h3 class="font-display text-2xl md:text-4xl uppercase tracking-[-0.06em] leading-none">{service.title}</h3>
           </div>
           <div class="col-span-12 md:col-span-4 p-4 md:p-6 border-t-2 md:border-t-0 md:border-r-2 border-black group-hover:border-white text-sm md:text-base font-medium leading-relaxed">
@@ -45,4 +44,3 @@ const services = [
     </div>
   </div>
 </section>
-

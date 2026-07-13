@@ -123,6 +123,12 @@ textarea {
   text-transform: uppercase;
 }
 
+.hero-display {
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(3.4rem, 6.6vw, 7rem);
+}
+
 .swiss-heading {
   margin: 0;
   max-width: 13ch;
@@ -235,6 +241,55 @@ textarea {
     linear-gradient(var(--paper), var(--paper));
 }
 
+.team-portrait {
+  isolation: isolate;
+}
+
+.team-blob {
+  position: absolute;
+  z-index: 0;
+  right: 6%;
+  bottom: 3%;
+  left: 6%;
+  height: 68%;
+  background: #c3c8cc;
+}
+
+.team-blob--left {
+  clip-path: polygon(3% 32%, 34% 6%, 82% 13%, 97% 42%, 84% 92%, 29% 100%, 7% 75%);
+  transform: rotate(-2deg);
+}
+
+.team-blob--right {
+  background: rgb(8 127 91 / 28%);
+  clip-path: polygon(9% 15%, 75% 8%, 96% 34%, 88% 89%, 45% 100%, 4% 76%);
+  transform: rotate(2deg);
+}
+
+.team-photo {
+  position: absolute;
+  z-index: 1;
+  bottom: -25%;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 125%;
+  object-fit: contain;
+  object-position: bottom;
+  filter: grayscale(1) contrast(1.06);
+  transform: translateX(-50%);
+  transition: filter 240ms ease, transform 240ms ease;
+}
+
+.team-photo--adrian {
+  bottom: -8%;
+}
+
+.group:hover .team-photo {
+  filter: grayscale(0) contrast(1.02);
+  transform: translateX(-50%) scale(1.015);
+}
+
 .ink-splatter {
   position: absolute;
   width: 11rem;
@@ -270,6 +325,24 @@ textarea {
   display: inline-flex;
   min-width: max-content;
   animation: marquee 24s linear infinite;
+}
+
+.marquee-track--nav {
+  animation-duration: 18s;
+  will-change: transform;
+}
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 @keyframes marquee {
@@ -326,6 +399,11 @@ textarea {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track--nav {
+    animation-duration: 25s !important;
+    animation-iteration-count: infinite !important;
   }
 
   .fade-up {

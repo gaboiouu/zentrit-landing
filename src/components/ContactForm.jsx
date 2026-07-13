@@ -60,7 +60,7 @@ export default function ContactForm() {
 
       <button type="submit" disabled={status === "loading" || status === "success"} className="mt-4 w-full min-h-16 px-5 bg-zt-primary text-white border-2 border-black shadow-[5px_5px_0_#0b0c0a] flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.12em] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[2px_2px_0_#0b0c0a] transition disabled:opacity-60">
         <span>{status === "loading" ? "Enviando…" : status === "success" ? "Mensaje enviado" : "Enviar solicitud"}</span>
-        <span aria-hidden="true">送信 →</span>
+        <span aria-hidden="true">→</span>
       </button>
 
       <p className="mt-5 min-h-5 border-t-2 border-black pt-3 font-mono text-[9px] font-bold uppercase tracking-wider" role="status" aria-live="polite">

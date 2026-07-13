@@ -1,11 +1,11 @@
 ---
 const audiences = [
-  { num: "A", jp: "起業家", title: "Emprendedores", desc: "Una base digital profesional desde el primer día." },
-  { num: "B", jp: "企業", title: "Empresas", desc: "Operaciones conectadas, medibles y escalables." },
-  { num: "C", jp: "地域", title: "Negocios locales", desc: "Presencia enfocada en generar demanda." },
-  { num: "D", jp: "飲食", title: "Restaurantes", desc: "Reservas, pedidos y operación conectada." },
-  { num: "E", jp: "物流", title: "Distribuidoras", desc: "Control de ventas, inventario y logística." },
-  { num: "F", jp: "ブランド", title: "Marcas & agencias", desc: "Experiencias visuales listas para competir." },
+  { num: "A", title: "Emprendedores", desc: "Una base digital profesional desde el primer día." },
+  { num: "B", title: "Empresas", desc: "Operaciones conectadas, medibles y escalables." },
+  { num: "C", title: "Negocios locales", desc: "Presencia enfocada en generar demanda." },
+  { num: "D", title: "Restaurantes", desc: "Reservas, pedidos y operación conectada." },
+  { num: "E", title: "Distribuidoras", desc: "Control de ventas, inventario y logística." },
+  { num: "F", title: "Marcas & agencias", desc: "Experiencias visuales listas para competir." },
 ];
 ---
 
@@ -15,7 +15,6 @@ const audiences = [
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 mb-14">
       <div class="lg:col-span-3">
         <span class="zine-label !bg-zt-primary">02 / Target file</span>
-        <div class="mt-5 zine-jp text-6xl md:text-8xl leading-none text-white/15" aria-hidden="true">対象</div>
       </div>
       <h2 class="lg:col-span-9 swiss-heading !max-w-[14ch]">Para negocios que necesitan avanzar, <span class="text-zt-mint">no decorar.</span></h2>
     </div>
@@ -23,10 +22,7 @@ const audiences = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t-2 border-l-2 border-white">
       {audiences.map((audience) => (
         <article class="min-h-56 p-5 md:p-7 border-r-2 border-b-2 border-white flex flex-col justify-between hover:bg-zt-primary transition-colors fade-up">
-          <div class="flex items-start justify-between">
-            <span class="font-display text-4xl">{audience.num}</span>
-            <span class="zine-jp text-lg text-white/45">{audience.jp}</span>
-          </div>
+          <span class="font-display text-4xl">{audience.num}</span>
           <div>
             <h3 class="font-display text-2xl uppercase tracking-[-0.05em] mb-2">{audience.title}</h3>
             <p class="text-sm leading-relaxed text-white/65 max-w-xs">{audience.desc}</p>

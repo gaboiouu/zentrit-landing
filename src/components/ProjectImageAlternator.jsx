@@ -18,7 +18,6 @@ const candidates = [
 const INTERVAL_MS = 4000;
 
 export default function ProjectImageAlternator({
-  jp = "選挙",
   indexLabel = "01",
   className = "",
 }) {
@@ -58,10 +57,6 @@ export default function ProjectImageAlternator({
       <span className="absolute top-0 left-0 z-10 bg-black text-white border-r-2 border-b-2 border-white px-3 py-2 font-display text-2xl">
         {indexLabel}
       </span>
-      <span className="absolute bottom-3 right-3 z-10 zine-jp text-4xl md:text-6xl text-white [text-shadow:3px_3px_0_#0b0c0a]">
-        {jp}
-      </span>
-
       <span className="absolute bottom-3 left-3 z-10 bg-black/80 text-white font-mono text-[9px] uppercase tracking-widest px-2 py-1 border border-white/30">
         {current.name}
       </span>

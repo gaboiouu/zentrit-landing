@@ -5,7 +5,8 @@ const navLinks = [
   { label: "Proceso", href: "#proceso" },
 ];
 
-const ticker = "DISEÑO 独自性 — CÓDIGO 精度 — SISTEMAS 構造 — PRODUCTOS DIGITAL PRODUCT — ";
+const tickerItems = ["DISEÑO", "CÓDIGO", "SISTEMAS", "PRODUCTOS DIGITALES"];
+const tickerLoop = Array.from({ length: 3 }, () => tickerItems).flat();
 ---
 
 <nav class="fixed inset-x-0 top-0 z-50 bg-[#e9e8d8] border-b-2 border-black" aria-label="Navegación principal">
@@ -14,8 +15,7 @@ const ticker = "DISEÑO 独自性 — CÓDIGO 精度 — SISTEMAS 構造 — PRO
       <img src="/zt.png" alt="" class="h-11 w-auto object-contain bg-[#e9e8d8]" />
       <div class="leading-none">
         <span class="block font-display text-lg tracking-[-0.06em] uppercase">ZentrIT</span>
-        <span class="block mt-1 font-mono text-[7px] tracking-[0.14em] uppercase">Digital studio / 2026</span>
-      </div>
+        </div>
     </a>
 
     <div class="hidden md:flex md:col-span-6">
@@ -33,11 +33,27 @@ const ticker = "DISEÑO 独自性 — CÓDIGO 精度 — SISTEMAS 構造 — PRO
     </a>
   </div>
 
-  <div class="h-8 bg-black text-white border-t-2 border-black marquee font-mono text-[9px] font-bold uppercase tracking-[0.13em] flex items-center">
-    <div class="marquee-track">
-      <span class="px-4">{ticker}{ticker}</span>
-      <span class="px-4" aria-hidden="true">{ticker}{ticker}</span>
+  <div
+    class="h-8 bg-black text-white border-t-2 border-black marquee font-mono text-[9px] font-bold uppercase tracking-[0.13em] flex items-center"
+    aria-label="Diseño, código, sistemas y productos digitales"
+  >
+    <div class="marquee-track marquee-track--nav" aria-hidden="true">
+      <div class="marquee-group">
+        {tickerLoop.map((item) => (
+          <span class="marquee-item">
+            <span>{item}</span>
+            <span>—</span>
+          </span>
+        ))}
+      </div>
+      <div class="marquee-group">
+        {tickerLoop.map((item) => (
+          <span class="marquee-item">
+            <span>{item}</span>
+            <span>—</span>
+          </span>
+        ))}
+      </div>
     </div>
   </div>
 </nav>
-
