@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/a7d77a2d6c6f50cbb000134f6ef21d53";
+const FORMSUBMIT_AJAX_ENDPOINT = FORMSUBMIT_ENDPOINT.replace("formsubmit.co/", "formsubmit.co/ajax/");
+
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState("idle");
@@ -7,6 +10,11 @@ export default function ContactForm() {
 
   const handleChange = (event) => {
     setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
+
+    if (status !== "idle") {
+      setStatus("idle");
+      setErrorMsg("");
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -15,10 +23,11 @@ export default function ContactForm() {
     setErrorMsg("");
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/zentritsoft@gmail.com", {
+      const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
+      const response = await fetch(FORMSUBMIT_AJAX_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) throw new Error("No se pudo enviar el mensaje");
@@ -35,8 +44,10 @@ export default function ContactForm() {
   const labelClass = "inline-block bg-black text-white px-2 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.12em]";
 
   return (
-    <form action="https://formsubmit.co/zentritsoft@gmail.com" method="POST" onSubmit={handleSubmit} className="zine-panel bg-[#d3d2bf] p-3 md:p-5">
+    <form action={FORMSUBMIT_ENDPOINT} method="POST" onSubmit={handleSubmit} className="zine-panel bg-[#d3d2bf] p-3 md:p-5">
       <input type="hidden" name="_subject" value="Nuevo proyecto desde ZentrIT" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="text" name="_honey" tabIndex="-1" autoComplete="off" className="hidden" aria-hidden="true" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
           <label htmlFor="name" className={labelClass}>01 / Nombre</label>
@@ -58,7 +69,7 @@ export default function ContactForm() {
         <textarea className={`${fieldClass} mt-[-2px] resize-none min-h-40`} id="message" name="message" required rows={5} value={form.message} onChange={handleChange} placeholder="¿Qué necesitas construir?"></textarea>
       </div>
 
-      <button type="submit" disabled={status === "loading" || status === "success"} className="mt-4 w-full min-h-16 px-5 bg-zt-primary text-white border-2 border-black shadow-[5px_5px_0_#0b0c0a] flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.12em] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[2px_2px_0_#0b0c0a] transition disabled:opacity-60">
+      <button type="submit" disabled={status === "loading"} className="mt-4 w-full min-h-16 px-5 bg-zt-primary text-white border-2 border-black shadow-[5px_5px_0_#0b0c0a] flex items-center justify-between font-mono text-xs font-bold uppercase tracking-[0.12em] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[2px_2px_0_#0b0c0a] transition disabled:opacity-60">
         <span>{status === "loading" ? "Enviando…" : status === "success" ? "Mensaje enviado" : "Enviar solicitud"}</span>
         <span aria-hidden="true">→</span>
       </button>
