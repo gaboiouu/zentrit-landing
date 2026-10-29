@@ -1,0 +1,25 @@
+{
+  "name": "Zentrit",
+  "short_name": "Zentrit",
+  "description": "Desarrollo de software y soluciones digitales en Perú.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#e9e8d8",
+  "theme_color": "#087f5b",
+  "lang": "es-PE",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

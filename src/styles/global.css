@@ -129,6 +129,12 @@ textarea {
   font-size: clamp(3.4rem, 6.6vw, 7rem);
 }
 
+.hero-display--seo {
+  max-width: 12ch;
+  font-size: clamp(2.8rem, 5.35vw, 5.8rem);
+  line-height: 0.84;
+}
+
 .swiss-heading {
   margin: 0;
   max-width: 13ch;
@@ -248,35 +254,52 @@ textarea {
 .team-blob {
   position: absolute;
   z-index: 0;
-  right: 6%;
-  bottom: 3%;
-  left: 6%;
-  height: 68%;
+  right: 8%;
+  bottom: 0;
+  left: 8%;
+  height: 76%;
   background: #c3c8cc;
+  transition: transform 240ms ease, background-color 240ms ease;
 }
 
-.team-blob--left {
+.team-blob--01 {
   clip-path: polygon(3% 32%, 34% 6%, 82% 13%, 97% 42%, 84% 92%, 29% 100%, 7% 75%);
   transform: rotate(-2deg);
 }
 
-.team-blob--right {
-  background: rgb(8 127 91 / 28%);
+.team-blob--02 {
+  background: rgb(8 127 91 / 30%);
   clip-path: polygon(9% 15%, 75% 8%, 96% 34%, 88% 89%, 45% 100%, 4% 76%);
+  transform: rotate(1.5deg);
+}
+
+.team-blob--03 {
+  background: rgb(198 213 72 / 46%);
+  clip-path: polygon(12% 10%, 86% 18%, 95% 62%, 78% 96%, 18% 92%, 4% 48%);
+  transform: rotate(-1.5deg);
+}
+
+.team-blob--04 {
+  background: rgb(146 210 181 / 55%);
+  clip-path: polygon(6% 20%, 68% 6%, 94% 28%, 90% 86%, 36% 98%, 5% 72%);
   transform: rotate(2deg);
+}
+
+.group:hover .team-blob {
+  transform: scale(1.04) rotate(0deg);
 }
 
 .team-photo {
   position: absolute;
   z-index: 1;
-  bottom: -25%;
+  bottom: -10%;
   left: 50%;
   width: auto;
   max-width: none;
-  height: 125%;
+  height: 112%;
   object-fit: contain;
   object-position: bottom;
-  filter: grayscale(1) contrast(1.06);
+  filter: grayscale(1) contrast(1.08);
   transform: translateX(-50%);
   transition: filter 240ms ease, transform 240ms ease;
 }
@@ -287,7 +310,7 @@ textarea {
 
 .group:hover .team-photo {
   filter: grayscale(0) contrast(1.02);
-  transform: translateX(-50%) scale(1.015);
+  transform: translateX(-50%) scale(1.03);
 }
 
 .ink-splatter {
@@ -350,12 +373,17 @@ textarea {
 }
 
 .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
+.js .fade-up {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 420ms ease, transform 420ms ease;
 }
 
-.fade-up.visible {
+.js .fade-up.visible {
   opacity: 1;
   transform: none;
 }
@@ -371,6 +399,10 @@ textarea {
 
   .swiss-display {
     font-size: clamp(3rem, 13vw, 4.5rem);
+  }
+
+  .hero-display--seo {
+    font-size: clamp(2.65rem, 11vw, 4.2rem);
   }
 
   .swiss-heading {

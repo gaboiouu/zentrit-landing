@@ -9,12 +9,12 @@ const featured = {
 };
 
 const projects = [
-  { title: "E-Commerce", type: "Retail", desc: "Catálogo, carrito, pagos y administración para vender sin fricción.", tags: ["Commerce", "Pagos", "CRO"], img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=650&fit=crop" },
-  { title: "Gestión de fletes", type: "Logística", desc: "Asignación de viajes para más de 40 camiones y seguimiento satelital.", tags: ["GPS", "PDF", "Datos"], img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&h=650&fit=crop" },
-  { title: "Portal Metrobus", type: "Transporte", desc: "Rutas, mapas y tiempos conectados a datos en tiempo real.", tags: ["REST", "Mapas", "Realtime"], img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&h=650&fit=crop" },
-  { title: "Venta de equipo", type: "E-Commerce", desc: "Catálogo con inventario, pagos, órdenes y administración.", tags: ["PHP", "API", "MySQL"], img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=900&h=650&fit=crop" },
-  { title: "Render Track", type: "Producción", desc: "Monitoreo de equipos, colas de trabajo y notificaciones.", tags: ["Node", "WebSocket", "React"], img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=900&h=650&fit=crop" },
-  { title: "Admin Hotel", type: "Hospitalidad", desc: "Reservas, check-in, limpieza, facturación y reportes.", tags: ["Reservas", "Operación", "Reportes"], img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&h=650&fit=crop" },
+  { title: "E-Commerce", type: "Retail", desc: "Catálogo, carrito, pagos y administración para vender sin fricción.", tags: ["Commerce", "Pagos", "CRO"], img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=650&fit=crop&fm=webp&q=75" },
+  { title: "Gestión de fletes", type: "Logística", desc: "Asignación de viajes para más de 40 camiones y seguimiento satelital.", tags: ["GPS", "PDF", "Datos"], img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&h=650&fit=crop&fm=webp&q=75" },
+  { title: "Portal Metrobus", type: "Transporte", desc: "Rutas, mapas y tiempos conectados a datos en tiempo real.", tags: ["REST", "Mapas", "Realtime"], img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&h=650&fit=crop&fm=webp&q=75" },
+  { title: "Venta de equipo", type: "E-Commerce", desc: "Catálogo con inventario, pagos, órdenes y administración.", tags: ["PHP", "API", "MySQL"], img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=900&h=650&fit=crop&fm=webp&q=75" },
+  { title: "Render Track", type: "Producción", desc: "Monitoreo de equipos, colas de trabajo y notificaciones.", tags: ["Node", "WebSocket", "React"], img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=900&h=650&fit=crop&fm=webp&q=75" },
+  { title: "Admin Hotel", type: "Hospitalidad", desc: "Reservas, check-in, limpieza, facturación y reportes.", tags: ["Reservas", "Operación", "Reportes"], img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&h=650&fit=crop&fm=webp&q=75" },
 ];
 ---
 
@@ -28,6 +28,7 @@ const projects = [
       <div class="lg:col-span-9">
         <h2 class="swiss-heading !max-w-[13ch]">Proyectos que <span class="swiss-accent">hacen el trabajo.</span></h2>
         <p class="mt-8 max-w-xl font-medium leading-relaxed border-l-4 border-black pl-4">Sistemas creados para comercio, logística, transporte y operación empresarial.</p>
+        <a href="/proyectos/" class="swiss-button swiss-button--secondary mt-7 max-w-xs">Ver todos los proyectos <span aria-hidden="true">→</span></a>
       </div>
     </div>
 
@@ -36,7 +37,7 @@ const projects = [
       <article class="zine-panel group p-3 bg-[#d3d2bf] fade-up md:col-span-2">
         <div class="grid md:grid-cols-[1.2fr_0.8fr]">
           <ProjectImageAlternator
-            client:load
+            client:visible
             indexLabel="01"
             className="aspect-[16/10] md:aspect-[16/9]"
           />
@@ -59,7 +60,7 @@ const projects = [
         <article class:list={["zine-panel group p-3 bg-[#d3d2bf] fade-up", index % 3 === 0 ? "md:rotate-[0.5deg]" : index % 3 === 1 ? "md:-rotate-[0.5deg]" : ""]}>
           <div class="grid grid-cols-1">
             <div class="relative overflow-hidden bg-black border-2 border-black halftone aspect-[16/10]">
-              <img src={project.img} alt={project.title} loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale contrast-150 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition duration-200" />
+              <img src={project.img} alt={project.title} width="900" height="650" loading="lazy" decoding="async" fetchpriority="low" class="absolute inset-0 w-full h-full object-cover grayscale contrast-150 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition duration-200" />
               <span class="absolute top-0 left-0 z-10 bg-black text-white border-r-2 border-b-2 border-white px-3 py-2 font-display text-2xl">{String(index + 2).padStart(2, "0")}</span>
             </div>
             <div class="p-4 md:p-6 flex flex-col justify-between min-h-56 bg-[#e9e8d8] border-x-2 border-b-2 border-black">

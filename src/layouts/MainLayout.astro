@@ -1,21 +1,87 @@
 ---
 import "../styles/global.css";
+import {
+  absoluteUrl,
+  homeJsonLd,
+  siteConfig,
+} from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  robots?: string;
+  type?: "website" | "article";
+  imagePath?: string;
+  imageAlt?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = siteConfig.defaultTitle,
+  description = siteConfig.defaultDescription,
+  canonicalPath = Astro.url.pathname,
+  robots = "index, follow",
+  type = "website",
+  imagePath = siteConfig.socialImage.path,
+  imageAlt = siteConfig.socialImage.alt,
+  structuredData = canonicalPath === "/" ? homeJsonLd : undefined,
+} = Astro.props;
+
+const canonicalUrl = absoluteUrl(canonicalPath);
+const socialImageUrl = absoluteUrl(imagePath);
+const jsonLd = structuredData ? JSON.stringify(structuredData) : null;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={siteConfig.language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f5f5f0" />
-    <link rel="icon" type="image/png" href="/zt.png" />
-    <link rel="apple-touch-icon" href="/zt.png" />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
+    <meta name="application-name" content={siteConfig.name} />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="generator" content={Astro.generator} />
-    <title>ZentrIT</title>
-    <meta name="description" content="Diseño y desarrollo de sistemas, e-commerce, plataformas web y automatización para empresas en crecimiento." />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es-PE" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:secure_url" content={socialImageUrl} />
+    <meta property="og:image:type" content={siteConfig.socialImage.type} />
+    <meta property="og:image:width" content={String(siteConfig.socialImage.width)} />
+    <meta property="og:image:height" content={String(siteConfig.socialImage.height)} />
+    <meta property="og:image:alt" content={imageAlt} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet" />
+    {siteConfig.googleSiteVerification && (
+      <meta name="google-site-verification" content={siteConfig.googleSiteVerification} />
+    )}
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+    <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body>
     <slot />
@@ -23,14 +89,20 @@ import "../styles/global.css";
 </html>
 
 <script>
-  const observer = new IntersectionObserver((entries, activeObserver) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        activeObserver.unobserve(entry.target);
-      }
-    }
-  }, { threshold: 0.08 });
+  const animatedElements = document.querySelectorAll(".fade-up");
 
-  document.querySelectorAll(".fade-up").forEach((element) => observer.observe(element));
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, activeObserver) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          activeObserver.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.08 });
+
+    animatedElements.forEach((element) => observer.observe(element));
+  } else {
+    animatedElements.forEach((element) => element.classList.add("visible"));
+  }
 </script>

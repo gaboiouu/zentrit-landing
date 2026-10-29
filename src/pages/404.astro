@@ -1,0 +1,28 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Página no encontrada | Zentrit"
+  description="La página solicitada no existe o cambió de ubicación. Regresa al inicio de Zentrit o consulta nuestros servicios."
+  canonicalPath="/404/"
+  robots="noindex, follow"
+>
+  <Navbar />
+  <main class="pt-[104px] bg-[#e9e8d8]">
+    <section class="swiss-section min-h-[70vh] speed-lines flex items-center">
+      <div class="swiss-container">
+        <span class="zine-label !bg-zt-primary">Error / 404</span>
+        <h1 class="mt-7 max-w-[12ch] font-display text-6xl uppercase leading-[0.8] tracking-[-0.07em] md:text-8xl">Esta página no está en el archivo.</h1>
+        <p class="mt-7 max-w-xl border-l-4 border-black pl-4 text-lg font-medium leading-relaxed">La dirección puede haber cambiado o el enlace está incompleto. Puedes volver al inicio o revisar los servicios de Zentrit.</p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <a href="/" class="swiss-button swiss-button--primary">Volver al inicio <span aria-hidden="true">→</span></a>
+          <a href="/#servicios" class="swiss-button swiss-button--secondary">Ver servicios <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</MainLayout>

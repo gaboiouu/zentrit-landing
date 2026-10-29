@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import heroImg from "../assets/img1.png";
 ---
 
@@ -13,15 +14,15 @@ import heroImg from "../assets/img1.png";
         </div>
 
         <div class="relative">
-          <h1 class="swiss-display hero-display relative z-10">
-            Soluciones<br /><span class="swiss-accent">digitales</span><br />para tu<br />negocio.
+          <h1 class="swiss-display hero-display hero-display--seo relative z-10">
+            Zentrit: <br /><span class="swiss-accent">desarrollo de software</span> <br />y soluciones digitales <br />en Perú
           </h1>
         </div>
       </div>
 
       <div class="relative z-10 grid grid-cols-1 md:grid-cols-7 gap-6 mt-14 pt-5 border-t-[3px] border-black">
         <p class="md:col-span-4 text-base md:text-lg font-medium leading-relaxed bg-[#e9e8d8]">
-          Sistemas, comercios digitales y plataformas web para empresas que necesitan crecer sin improvisar.
+          Zentrit es una empresa peruana que desarrolla software, páginas web, aplicaciones móviles y automatizaciones para empresas.
         </p>
         <div class="md:col-span-3 flex flex-col gap-3">
           <a href="#contacto" class="swiss-button swiss-button--primary">Iniciar proyecto <span aria-hidden="true">→</span></a>
@@ -33,7 +34,7 @@ import heroImg from "../assets/img1.png";
     <div class="lg:col-span-5 relative min-h-[34rem] lg:min-h-full bg-black overflow-hidden">
       <div class="absolute inset-5 md:inset-7 border-2 border-white z-20 pointer-events-none"></div>
       <div class="absolute inset-0 halftone">
-        <img src={heroImg.src} alt="Equipo colaborando en una solución digital" class="absolute inset-0 w-full h-full object-cover grayscale contrast-150 brightness-90" />
+        <Image src={heroImg} alt="Equipo de desarrollo trabajando en una solución digital" format="webp" quality={80} loading="eager" fetchpriority="high" class="absolute inset-0 w-full h-full object-cover grayscale contrast-150 brightness-90" />
       </div>
       <div class="absolute inset-0 bg-zt-primary mix-blend-multiply opacity-30"></div>
       <div class="absolute top-0 right-0 z-30 bg-[#e9e8d8] text-black border-l-2 border-b-2 border-black px-4 py-3">

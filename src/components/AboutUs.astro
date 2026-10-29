@@ -1,69 +1,232 @@
 ---
+import { Image } from "astro:assets";
 import adrianPhoto from "../assets/AdrianSandoval.png";
 import aaronPhoto from "../assets/AaronSilva.png";
+import andersonPhoto from "../assets/AaronSilva.png";
+import angeloPhoto from "../assets/AaronSilva.png";
 
 const team = [
   {
     num: "01",
-    name: "Sandoval Ballona Adrián",
-    role: "Estrategia & producto",
-    specialties: "Estrategia / UX / Dirección",
+    code: "ZT-CORE // 01",
+    badge: "Producto & UX",
+    surnames: "Sandoval Ballona",
+    firstName: "Adrián",
+    fullName: "Sandoval Ballona Adrián",
+    role: "Estrategia & Producto",
+    bio: "Aterriza los objetivos comerciales en flujos claros, interfaces intuitivas y un alcance de producto medible desde el primer día.",
+    specialties: ["Estrategia", "UX / UI", "Dirección"],
+    focus: "Definición & Experiencia",
     photo: adrianPhoto,
     photoClass: "team-photo--adrian",
-    blobClass: "team-blob--left",
+    blobClass: "team-blob--01",
   },
   {
     num: "02",
-    name: "Silva Chorres Aarón",
-    role: "Tecnología & desarrollo",
-    specialties: "Arquitectura / Código / Entrega",
+    code: "ZT-CORE // 02",
+    badge: "Ingeniería & Web",
+    surnames: "Silva Chorres",
+    firstName: "Aarón",
+    fullName: "Silva Chorres Aarón",
+    role: "Arquitectura & Frontend",
+    bio: "Diseña la estructura técnica y construye interfaces web rápidas, mantenibles y listas para escalar en producción.",
+    specialties: ["Arquitectura", "Frontend", "Full-Stack"],
+    focus: "Código & Rendimiento",
     photo: aaronPhoto,
     photoClass: "",
-    blobClass: "team-blob--right",
+    blobClass: "team-blob--02",
+  },
+  {
+    num: "03",
+    code: "ZT-CORE // 03",
+    badge: "Sistemas & Datos",
+    surnames: "Flores Ruiz",
+    firstName: "Anderson",
+    fullName: "Flores Ruiz Anderson",
+    role: "Backend & Bases de Datos",
+    bio: "Modela la lógica de negocio, APIs y estructuras de datos para que las operaciones empresariales funcionen con precisión.",
+    specialties: ["Backend", "APIs & Datos", "ERPs"],
+    focus: "Lógica & Escalabilidad",
+    photo: andersonPhoto,
+    photoClass: "",
+    blobClass: "team-blob--03",
+  },
+  {
+    num: "04",
+    code: "ZT-CORE // 04",
+    badge: "Automatización & Mobile",
+    surnames: "Rubiñoz Ortiz",
+    firstName: "Angelo",
+    fullName: "Rubiñoz Ortiz Angelo",
+    role: "Soluciones & Automatización",
+    bio: "Conecta servicios, desarrolla flujos automatizados y asegura que cada entrega opere sin fricción en cualquier entorno.",
+    specialties: ["Automatización", "Apps Móviles", "Despliegue"],
+    focus: "Integración & Entrega",
+    photo: angeloPhoto,
+    photoClass: "",
+    blobClass: "team-blob--04",
+  },
+];
+
+const pillars = [
+  {
+    code: "A1",
+    title: "Trato directo, sin intermediarios",
+    desc: "Hablas directamente con los cuatro especialistas que diseñan y construyen tu sistema.",
+  },
+  {
+    code: "A2",
+    title: "Cobertura de punta a punta",
+    desc: "Producto, frontend, backend, móvil y automatización resueltos dentro de un mismo equipo.",
+  },
+  {
+    code: "A3",
+    title: "Entregas claras y verificables",
+    desc: "Avances visibles por etapa, decisiones documentadas y código pensado para crecer.",
   },
 ];
 ---
 
 <section id="nosotros" class="swiss-section bg-[#e9e8d8] overflow-hidden">
   <div class="swiss-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 mb-10">
-      <div class="lg:col-span-3 fade-up">
-        <span class="zine-label">06 / Sobre nosotros</span>
-        <p class="mt-5 font-mono text-[9px] font-bold uppercase tracking-widest leading-relaxed">
-          Equipo / 02 personas<br />Contacto directo<br />Chimbote — Perú
-        </p>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-10 mb-14">
+      <div class="lg:col-span-4 fade-up flex flex-col justify-between">
+        <div>
+          <span class="swiss-kicker">06 / Sobre nosotros</span>
+          <div class="mt-2 border-2 border-black bg-[#d3d2bf] p-4 font-mono text-[10px] font-bold uppercase tracking-widest leading-relaxed shadow-[4px_4px_0_#0b0c0a]">
+            <div class="flex justify-between border-b border-black/30 pb-1.5 mb-1.5">
+              <span class="text-black/60">Equipo</span>
+              <span>04 Integrantes</span>
+            </div>
+            <div class="flex justify-between border-b border-black/30 pb-1.5 mb-1.5">
+              <span class="text-black/60">Estructura</span>
+              <span>Célula completa</span>
+            </div>
+            <div class="flex justify-between border-b border-black/30 pb-1.5 mb-1.5">
+              <span class="text-black/60">Modalidad</span>
+              <span class="text-zt-primary">Contacto directo</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-black/60">Base</span>
+              <span>Chimbote — Perú</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="lg:col-span-9 fade-up">
-        <h2 class="swiss-heading !max-w-[14ch]">
-          Dos personas. <span class="swiss-accent">Un solo equipo.</span>
+      <div class="lg:col-span-8 fade-up">
+        <h2 class="swiss-heading !max-w-[15ch]">
+          Cuatro perfiles. <span class="swiss-accent">Un solo sistema.</span>
         </h2>
-        <p class="mt-5 max-w-2xl border-l-4 border-black pl-4 text-base md:text-lg font-medium leading-relaxed">
-          Estrategia, diseño y desarrollo directamente con nosotros.
+        <p class="mt-6 max-w-2xl border-l-4 border-black pl-4 text-base md:text-lg font-medium leading-relaxed">
+          Sin teléfonos rotos ni capas comerciales innecesarias. Quienes definen la estrategia, diseñan la experiencia, programan el sistema y automatizan la operación somos las mismas personas que trabajan contigo.
         </p>
       </div>
     </div>
 
-    <div class="mx-auto grid max-w-5xl grid-cols-1 gap-x-16 gap-y-14 md:grid-cols-2">
+    {/* Matriz 2x2 de Fichas Editoriales Horizontales (Swiss Dossier) */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-8">
       {team.map((member) => (
-        <article class="group text-center fade-up">
-          <div class="team-portrait relative h-80 overflow-hidden md:h-[27rem]">
-            <div class:list={["team-blob", member.blobClass]} aria-hidden="true"></div>
-            <span class="absolute right-6 top-5 z-0 font-display text-8xl leading-none text-black/10 md:text-9xl" aria-hidden="true">{member.num}</span>
-            <img
-              src={member.photo.src}
-              alt={member.name}
-              class:list={["team-photo", member.photoClass]}
-              loading="lazy"
-            />
+        <article class="zine-panel group flex flex-col justify-between bg-[#f8f8ef] transition-transform duration-200 hover:-translate-y-1 fade-up">
+          {/* Cabecera técnica de la ficha */}
+          <div class="flex items-center justify-between border-b-2 border-black bg-black px-4 py-2.5 text-white">
+            <span class="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zt-mint">
+              {member.code}
+            </span>
+            <span class="border border-white/40 bg-white/10 px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-widest">
+              {member.badge}
+            </span>
           </div>
 
-          <span class="mt-6 inline-block font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zt-primary">Socio / {member.num}</span>
-          <h3 class="mx-auto mt-2 max-w-[16ch] font-display text-3xl uppercase leading-[0.9] tracking-[-0.055em] md:text-4xl">{member.name}</h3>
-          <p class="mt-3 font-display text-xl uppercase tracking-[-0.035em] text-black/55">{member.role}</p>
-          <p class="mt-3 font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-black/45">{member.specialties}</p>
+          {/* Cuerpo dividido: Retrato a la izquierda + Expediente a la derecha */}
+          <div class="grid grid-cols-1 sm:grid-cols-12 flex-1">
+            {/* Columna izquierda: Escenario del retrato */}
+            <div class="team-portrait sm:col-span-5 relative min-h-64 sm:min-h-72 overflow-hidden border-b-2 sm:border-b-0 sm:border-r-2 border-black bg-[#e9e8d8] speed-lines">
+              <div class:list={["team-blob", member.blobClass]} aria-hidden="true"></div>
+              <span
+                class="absolute right-3 top-2 z-0 font-display text-6xl leading-none text-black/10 select-none md:text-7xl"
+                aria-hidden="true"
+              >
+                {member.num}
+              </span>
+              <Image
+                src={member.photo}
+                alt={member.fullName}
+                class:list={["team-photo", member.photoClass]}
+                loading="lazy"
+                format="webp"
+                quality={80}
+              />
+              <div class="absolute bottom-2.5 left-2.5 right-2.5 z-10 border-2 border-black bg-[#f8f8ef] px-2 py-1 text-center shadow-[3px_3px_0_#0b0c0a]">
+                <span class="block truncate font-mono text-[8px] font-extrabold uppercase tracking-[0.12em] text-zt-primary">
+                  {member.role}
+                </span>
+              </div>
+            </div>
+
+            {/* Columna derecha: Datos del integrante */}
+            <div class="sm:col-span-7 p-5 md:p-6 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-black/55">
+                    {member.surnames}
+                  </span>
+                  <span class="font-mono text-[9px] font-extrabold uppercase tracking-widest text-zt-primary">
+                    #{member.num}
+                  </span>
+                </div>
+                <h3 class="mt-1 font-display text-3xl uppercase leading-[0.88] tracking-[-0.055em] md:text-4xl">
+                  {member.firstName}
+                </h3>
+
+                <p class="mt-3.5 text-sm font-medium leading-relaxed text-black/80">
+                  {member.bio}
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-black/15 flex flex-wrap gap-1.5">
+                {member.specialties.map((item) => (
+                  <span class="border-2 border-black bg-[#e9e8d8] px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-widest group-hover:bg-zt-lime transition-colors">
+                    #{item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Pie de ficha */}
+          <div class="flex items-center justify-between border-t-2 border-black bg-[#d3d2bf] px-4 py-2.5 font-mono text-[9px] font-bold uppercase tracking-wider">
+            <span class="text-black/60">Foco operativo</span>
+            <span class="text-black">{member.focus}</span>
+          </div>
         </article>
       ))}
+    </div>
+
+    {/* Franja inferior de valor del equipo + CTA */}
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 border-[3px] border-black bg-[#d3d2bf] shadow-[7px_7px_0_#0b0c0a] fade-up">
+      <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black">
+        {pillars.map((pillar) => (
+          <div class="p-5">
+            <span class="inline-block border border-black bg-black px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest text-zt-mint">
+              {pillar.code}
+            </span>
+            <h4 class="mt-3 font-display text-lg uppercase leading-tight tracking-[-0.04em]">
+              {pillar.title}
+            </h4>
+            <p class="mt-1.5 text-xs font-medium leading-relaxed text-black/75">
+              {pillar.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="lg:col-span-3 flex items-center justify-center border-t-2 lg:border-t-0 lg:border-l-2 border-black bg-[#e9e8d8] p-5">
+        <a href="/nosotros/" class="swiss-button swiss-button--primary w-full justify-between">
+          <span>Conoce al equipo</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>

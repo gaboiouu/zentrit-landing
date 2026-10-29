@@ -4,13 +4,17 @@ const candidates = [
   {
     id: "sandra",
     name: "Sandra Fernández",
-    img: "/SandraFernandez.png",
+    img: "/SandraFernandez.webp",
+    width: 1366,
+    height: 606,
     href: "https://sandrafernandez.pe/",
   },
   {
     id: "vladimir",
     name: "Vladimir Meza",
-    img: "/VladimirMeza.png",
+    img: "/VladimirMeza.webp",
+    width: 1351,
+    height: 605,
     href: "https://vladimir-meza.vercel.app/",
   },
 ];
@@ -44,7 +48,10 @@ export default function ProjectImageAlternator({
           key={candidate.id}
           src={candidate.img}
           alt={candidate.name}
-          loading="eager"
+          width={candidate.width}
+          height={candidate.height}
+          loading="lazy"
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-125 transition-opacity duration-500 ease-out group-hover:grayscale-0"
           style={{
             opacity: active === index ? 1 : 0,

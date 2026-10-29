@@ -1,9 +1,20 @@
 ---
 const currentYear = new Date().getFullYear();
 const links = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Proceso", href: "#proceso" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Proyectos", href: "/proyectos/" },
+  { label: "Nosotros", href: "/nosotros/" },
+];
+
+const siteMapLinks = [
+  { label: "Software", href: "/desarrollo-de-software/" },
+  { label: "Páginas web", href: "/paginas-web/" },
+  { label: "Apps móviles", href: "/aplicaciones-moviles/" },
+  { label: "Automatización", href: "/automatizacion-de-procesos/" },
+  { label: "Proyectos", href: "/proyectos/" },
+  { label: "Nosotros", href: "/nosotros/" },
+  { label: "Contacto", href: "/contacto/" },
+  { label: "Blog", href: "/blog/" },
 ];
 ---
 
@@ -20,7 +31,7 @@ const links = [
     <div class="grid grid-cols-1 md:grid-cols-12 border-x-2 border-white">
       <div class="md:col-span-6 relative p-6 md:p-10 border-r-2 border-b-2 border-white min-h-80 flex flex-col justify-between overflow-hidden">
         <a href="/" class="inline-flex items-center gap-4 w-fit relative z-10" aria-label="ZentrIT — Inicio">
-          <img src="/zt.png" alt="" class="h-14 w-auto bg-[#e9e8d8]" />
+          <img src="/zt.webp" alt="" width="56" height="56" loading="lazy" decoding="async" class="h-14 w-14 bg-[#e9e8d8]" />
           <div>
             <span class="block font-display text-3xl uppercase tracking-[-0.06em]">ZentrIT</span>
             <span class="font-mono text-[8px] uppercase tracking-widest text-white/50">Digital architecture</span>
@@ -46,6 +57,17 @@ const links = [
         <a href="https://instagram.com/zentritsoft" target="_blank" rel="noopener noreferrer" class="block p-5 font-mono text-xs hover:bg-white hover:text-black transition-colors">Instagram ↗</a>
       </div>
     </div>
+
+    <nav class="border-x-2 border-b-2 border-white" aria-label="Mapa del sitio">
+      <div class="p-3 border-b-2 border-white bg-zt-primary font-mono text-[9px] font-bold uppercase tracking-widest">Páginas</div>
+      <div class="grid grid-cols-2 md:grid-cols-4">
+        {siteMapLinks.map((link) => (
+          <a href={link.href} class="border-r-2 border-b-2 border-white p-4 font-mono text-[9px] font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">
+            {link.label} <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </nav>
 
     <div class="grid grid-cols-1 md:grid-cols-2 border-x-2 border-white font-mono text-[9px] uppercase tracking-widest">
       <div class="p-4 border-b-2 md:border-b-0 md:border-r-2 border-white">© {currentYear} A&amp;A ZentrIT / All systems operational</div>

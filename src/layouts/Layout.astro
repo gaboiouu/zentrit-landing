@@ -1,15 +1,7 @@
 ---
-import "../styles/global.css";
+import MainLayout from "./MainLayout.astro";
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/zt.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>ZentrIT</title>
-  </head>
-  <body><slot /></body>
-</html>
+<MainLayout {...Astro.props}>
+  <slot />
+</MainLayout>

@@ -1,0 +1,53 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import SeoLanding from "../components/SeoLanding.astro";
+import WhatsAppButton from "../components/WhatsAppButton.jsx";
+import { absoluteUrl, siteConfig } from "../config/site";
+import { seoPages, type SeoPage } from "../data/seoPages";
+import MainLayout from "../layouts/MainLayout.astro";
+
+export function getStaticPaths() {
+  return seoPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: SeoPage;
+}
+
+const { page } = Astro.props;
+const canonicalPath = `/${page.slug}/`;
+const webPageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${absoluteUrl(canonicalPath)}#webpage`,
+  url: absoluteUrl(canonicalPath),
+  name: page.title,
+  description: page.description,
+  inLanguage: "es-PE",
+  isPartOf: {
+    "@type": "WebSite",
+    "@id": `${siteConfig.siteUrl}/#website`,
+    url: `${siteConfig.siteUrl}/`,
+    name: siteConfig.name,
+  },
+  about: {
+    "@id": `${siteConfig.siteUrl}/#organization`,
+  },
+};
+---
+
+<MainLayout
+  title={page.title}
+  description={page.description}
+  canonicalPath={canonicalPath}
+  structuredData={webPageJsonLd}
+>
+  <Navbar />
+  <SeoLanding page={page} />
+  <WhatsAppButton />
+  <Footer />
+</MainLayout>
