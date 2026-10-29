@@ -1,8 +1,10 @@
 ---
 const navLinks = [
-  { label: "Servici_os", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Proceso", href: "#proceso" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Proyectos", href: "/#proyectos" },
+  { label: "Proceso", href: "/#proceso" },
+  { label: "Nosotros", href: "/#nosotros" },
+  { label: "FAQ", href: "/#preguntas" },
 ];
 
 const tickerItems = ["DISEÑO", "CÓDIGO", "SISTEMAS", "PRODUCTOS DIGITALES"];
@@ -10,31 +12,74 @@ const tickerLoop = Array.from({ length: 3 }, () => tickerItems).flat();
 ---
 
 <nav class="fixed inset-x-0 top-0 z-50 bg-[#e9e8d8] border-b-2 border-black" aria-label="Navegación principal">
-  <div class="swiss-container h-[72px] grid grid-cols-12 border-x-2 border-black">
-    <a href="/" class="col-span-7 md:col-span-3 flex items-center gap-3 px-3 md:px-5 border-r-2 border-black hover:bg-black hover:text-white transition-colors" aria-label="ZentrIT — Inicio">
-      <img src="/zt.webp" alt="" width="44" height="44" decoding="async" class="h-11 w-11 object-contain bg-[#e9e8d8]" />
-      <div class="leading-none">
-        <span class="block font-display text-lg tracking-[-0.06em] uppercase">ZentrIT</span>
-        </div>
+  <div class="swiss-container h-[64px] sm:h-[72px] grid grid-cols-12 border-x-2 border-black">
+    <a
+      href="/"
+      class="col-span-5 sm:col-span-6 md:col-span-3 lg:col-span-2 flex items-center gap-2 sm:gap-3 px-2.5 sm:px-4 border-r-2 border-black hover:bg-black hover:text-white transition-colors min-w-0"
+      aria-label="ZentrIT — Inicio"
+    >
+      <img src="/zt.webp" alt="" width="44" height="44" decoding="async" class="h-9 w-9 sm:h-11 sm:w-11 shrink-0 object-contain bg-[#e9e8d8]" />
+      <div class="leading-none truncate">
+        <span class="block font-display text-base sm:text-lg tracking-[-0.06em] uppercase truncate">ZentrIT</span>
+      </div>
     </a>
 
-    <div class="hidden md:flex md:col-span-6">
+    {/* Enlaces en Desktop (md+) */}
+    <div class="hidden md:flex md:col-span-6 lg:col-span-7">
       {navLinks.map((link, index) => (
-        <a href={link.href} class="flex-1 flex flex-col items-center justify-center border-r-2 border-black font-mono text-[10px] font-bold uppercase tracking-[0.09em] hover:bg-black hover:text-white transition-colors">
-          <span>0{index + 1}</span>
+        <a
+          href={link.href}
+          class="flex-1 flex flex-col items-center justify-center border-r-2 border-black font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.08em] hover:bg-black hover:text-white transition-colors px-1"
+        >
+          <span class="opacity-60">0{index + 1}</span>
           <span>{link.label}</span>
         </a>
       ))}
     </div>
 
-    <a href="/contacto/" class="col-span-5 md:col-span-3 flex items-center justify-between px-4 md:px-6 bg-zt-primary text-white font-mono text-[9px] md:text-[11px] font-bold uppercase tracking-[0.09em] hover:bg-black transition-colors">
-      <span>Iniciar proyecto</span>
-      <span class="text-lg" aria-hidden="true">↗</span>
-    </a>
+    {/* CTA + Botón Menú Móvil */}
+    <div class="col-span-7 sm:col-span-6 md:col-span-3 flex">
+      <a
+        href="/#contacto"
+        class="flex-1 flex items-center justify-between gap-1 px-3 sm:px-5 bg-zt-primary text-white font-mono text-[9px] sm:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.08em] hover:bg-black transition-colors min-w-0"
+      >
+        <span class="truncate">Iniciar proyecto</span>
+        <span class="text-base sm:text-lg shrink-0" aria-hidden="true">↗</span>
+      </a>
+
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu-drawer"
+        aria-label="Abrir menú de navegación"
+        class="md:hidden flex items-center justify-center w-12 sm:w-14 border-l-2 border-black bg-[#d3d2bf] text-black font-mono text-[10px] font-extrabold uppercase hover:bg-black hover:text-white transition-colors cursor-pointer shrink-0"
+      >
+        <span id="mobile-menu-icon">☰</span>
+      </button>
+    </div>
+  </div>
+
+  {/* Menú desplegable en móvil (< md) */}
+  <div
+    id="mobile-menu-drawer"
+    class="hidden md:hidden border-t-2 border-black bg-[#e9e8d8]"
+  >
+    <div class="swiss-container px-0 border-x-2 border-black divide-y-2 divide-black">
+      {navLinks.map((link, index) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link flex items-center justify-between px-4 py-3.5 font-mono text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors"
+        >
+          <span>0{index + 1} / {link.label}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      ))}
+    </div>
   </div>
 
   <div
-    class="h-8 bg-black text-white border-t-2 border-black marquee font-mono text-[9px] font-bold uppercase tracking-[0.13em] flex items-center"
+    class="h-7 sm:h-8 bg-black text-white border-t-2 border-black marquee font-mono text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.13em] flex items-center"
     aria-label="Diseño, código, sistemas y productos digitales"
   >
     <div class="marquee-track marquee-track--nav" aria-hidden="true">
@@ -57,3 +102,27 @@ const tickerLoop = Array.from({ length: 3 }, () => tickerItems).flat();
     </div>
   </div>
 </nav>
+
+<script>
+  const toggleBtn = document.getElementById("mobile-menu-toggle");
+  const drawer = document.getElementById("mobile-menu-drawer");
+  const icon = document.getElementById("mobile-menu-icon");
+  const links = document.querySelectorAll(".mobile-nav-link");
+
+  if (toggleBtn && drawer && icon) {
+    toggleBtn.addEventListener("click", () => {
+      const isHidden = drawer.classList.contains("hidden");
+      drawer.classList.toggle("hidden", !isHidden);
+      toggleBtn.setAttribute("aria-expanded", String(isHidden));
+      icon.textContent = isHidden ? "✕" : "☰";
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        drawer.classList.add("hidden");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        icon.textContent = "☰";
+      });
+    });
+  }
+</script>
