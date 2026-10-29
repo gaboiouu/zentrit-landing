@@ -171,13 +171,13 @@ export const seoPages: SeoPage[] = [
       "Nuestro archivo reúne trabajos y conceptos aplicados a campañas, comercio, logística, transporte, producción y administración.",
     sections: [
       {
-        heading: "Experiencias publicadas",
+        heading: "Sistemas empresariales a medida",
         intro:
-          "Zentrit desarrolló una landing para la campaña de País Para Todos, con presencia para Sandra Fernández y Vladimir Meza.",
+          "Zentrit diseña y despliega plataformas orientadas a control financiero, operaciones, inventario y toma de decisiones.",
         cards: [
-          { title: "Sandra Fernández", text: "Landing pública de campaña con contenido informativo y navegación adaptable." },
-          { title: "Vladimir Meza", text: "Experiencia web de campaña preparada para consulta desde dispositivos móviles." },
-          { title: "Trabajo integrado", text: "Diseño visual, implementación en React y publicación web como una sola entrega." },
+          { title: "Vértice ERP", text: "Plataforma centralizada para finanzas, órdenes de compra, inventario multi-sede y reportes en tiempo real." },
+          { title: "Gestión de Fletes", text: "Sistema logístico para asignación de viajes, generación de guías en PDF y seguimiento satelital." },
+          { title: "Trabajo integrado", text: "Diseño de interfaz, arquitectura backend y despliegue en producción como una sola entrega." },
         ],
       },
       {

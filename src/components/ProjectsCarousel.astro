@@ -1,81 +1,30 @@
 ---
 import ProjectImageAlternator from "./ProjectImageAlternator.jsx";
-
-const featured = {
-  title: "LANDING PAGE: CAMPAÑA PAÍS PARA TODOS",
-  type: "Campaña",
-  desc: "Proyecto de Zentrit para la campaña de País Para Todos, destacando las postulaciones clave de Sandra Fernández y Vladimir Meza.",
-  tags: ["React", "Campaña", "Landing"],
-};
-
-const projects = [
-  { title: "E-Commerce", type: "Retail", desc: "Catálogo, carrito, pagos y administración para vender sin fricción.", tags: ["Commerce", "Pagos", "CRO"], img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&h=650&fit=crop&fm=webp&q=75" },
-  { title: "Gestión de fletes", type: "Logística", desc: "Asignación de viajes para más de 40 camiones y seguimiento satelital.", tags: ["GPS", "PDF", "Datos"], img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&h=650&fit=crop&fm=webp&q=75" },
-  { title: "Portal Metrobus", type: "Transporte", desc: "Rutas, mapas y tiempos conectados a datos en tiempo real.", tags: ["REST", "Mapas", "Realtime"], img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&h=650&fit=crop&fm=webp&q=75" },
-  { title: "Venta de equipo", type: "E-Commerce", desc: "Catálogo con inventario, pagos, órdenes y administración.", tags: ["PHP", "API", "MySQL"], img: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=900&h=650&fit=crop&fm=webp&q=75" },
-  { title: "Render Track", type: "Producción", desc: "Monitoreo de equipos, colas de trabajo y notificaciones.", tags: ["Node", "WebSocket", "React"], img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=900&h=650&fit=crop&fm=webp&q=75" },
-  { title: "Admin Hotel", type: "Hospitalidad", desc: "Reservas, check-in, limpieza, facturación y reportes.", tags: ["Reservas", "Operación", "Reportes"], img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&h=650&fit=crop&fm=webp&q=75" },
-];
 ---
 
 <section id="proyectos" class="swiss-section bg-[#e9e8d8] overflow-hidden">
-  <div class="ink-splatter right-4 top-20 opacity-80 hidden md:block"></div>
   <div class="swiss-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 mb-16 relative z-10">
-      <div class="lg:col-span-3">
-        <span class="zine-label">03 / Archive</span>
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 fade-up">
+      <div>
+        <span class="zine-label">02 / Archive</span>
+        <h2 class="swiss-heading mt-4 !max-w-[14ch]">
+          Proyectos que <span class="swiss-accent">hacen el trabajo.</span>
+        </h2>
       </div>
-      <div class="lg:col-span-9">
-        <h2 class="swiss-heading !max-w-[13ch]">Proyectos que <span class="swiss-accent">hacen el trabajo.</span></h2>
-        <p class="mt-8 max-w-xl font-medium leading-relaxed border-l-4 border-black pl-4">Sistemas creados para comercio, logística, transporte y operación empresarial.</p>
-        <a href="/proyectos/" class="swiss-button swiss-button--secondary mt-7 max-w-xs">Ver todos los proyectos <span aria-hidden="true">→</span></a>
+
+      <div class="flex flex-col sm:flex-row sm:items-end gap-4">
+        <p class="max-w-sm border-l-4 border-black pl-3 text-sm md:text-base font-medium leading-snug">
+          Sistemas creados para finanzas, comercio, logística, transporte y operación empresarial.
+        </p>
+        <a href="/proyectos/" class="swiss-button swiss-button--secondary shrink-0">
+          <span>Ver todos</span>
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-      {/* Proyecto destacado: País Para Todos */}
-      <article class="zine-panel group p-3 bg-[#d3d2bf] fade-up md:col-span-2">
-        <div class="grid md:grid-cols-[1.2fr_0.8fr]">
-          <ProjectImageAlternator
-            client:visible
-            indexLabel="01"
-            className="aspect-[16/10] md:aspect-[16/9]"
-          />
-          <div class="p-4 md:p-6 flex flex-col justify-between min-h-56 bg-[#e9e8d8] border-x-2 border-b-2 md:border-l-0 md:border-t-2 border-black">
-            <div>
-              <span class="zine-label !bg-zt-primary">{featured.type}</span>
-              <h3 class="mt-4 font-display text-3xl md:text-5xl uppercase tracking-[-0.065em] leading-[0.82]">{featured.title}</h3>
-              <p class="mt-4 text-sm md:text-base font-medium leading-relaxed max-w-lg">{featured.desc}</p>
-            </div>
-            <div class="mt-6 flex flex-wrap gap-2 border-t-2 border-black pt-3">
-              {featured.tags.map((tag) => (
-                <span class="font-mono text-[8px] font-bold uppercase tracking-widest">[{tag}]</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </article>
-
-      {projects.map((project, index) => (
-        <article class:list={["zine-panel group p-3 bg-[#d3d2bf] fade-up", index % 3 === 0 ? "md:rotate-[0.5deg]" : index % 3 === 1 ? "md:-rotate-[0.5deg]" : ""]}>
-          <div class="grid grid-cols-1">
-            <div class="relative overflow-hidden bg-black border-2 border-black halftone aspect-[16/10]">
-              <img src={project.img} alt={project.title} width="900" height="650" loading="lazy" decoding="async" fetchpriority="low" class="absolute inset-0 w-full h-full object-cover grayscale contrast-150 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition duration-200" />
-              <span class="absolute top-0 left-0 z-10 bg-black text-white border-r-2 border-b-2 border-white px-3 py-2 font-display text-2xl">{String(index + 2).padStart(2, "0")}</span>
-            </div>
-            <div class="p-4 md:p-6 flex flex-col justify-between min-h-56 bg-[#e9e8d8] border-x-2 border-b-2 border-black">
-              <div>
-                <span class="zine-label !bg-zt-primary">{project.type}</span>
-                <h3 class="mt-4 font-display text-3xl md:text-5xl uppercase tracking-[-0.065em] leading-[0.82]">{project.title}</h3>
-                <p class="mt-4 text-sm md:text-base font-medium leading-relaxed max-w-lg">{project.desc}</p>
-              </div>
-              <div class="mt-6 flex flex-wrap gap-2 border-t-2 border-black pt-3">
-                {project.tags.map((tag) => <span class="font-mono text-[8px] font-bold uppercase tracking-widest">[{tag}]</span>)}
-              </div>
-            </div>
-          </div>
-        </article>
-      ))}
+    <div class="fade-up">
+      <ProjectImageAlternator client:visible />
     </div>
   </div>
 </section>

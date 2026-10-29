@@ -1,0 +1,75 @@
+---
+const faqs = [
+  {
+    num: "01",
+    question: "¿Necesito tener un documento técnico para cotizar?",
+    answer:
+      "No. Basta con que nos cuentes qué problema operativo o comercial quieres resolver. En la primera conversación aterrizamos juntos el alcance, las prioridades y la propuesta técnica.",
+  },
+  {
+    num: "02",
+    question: "¿Cuánto tiempo toma desarrollar un proyecto?",
+    answer:
+      "Una landing o web corporativa toma entre 1 y 3 semanas. Un sistema a medida, e-commerce o aplicación toma entre 4 y 10 semanas, trabajando con avances visibles en cada etapa.",
+  },
+  {
+    num: "03",
+    question: "¿El código y los accesos quedan a nombre de mi empresa?",
+    answer:
+      "Sí, al 100%. Al finalizar el proyecto, el código fuente, la base de datos, el dominio y todas las credenciales quedan bajo control directo de tu empresa, sin costos ocultos ni ataduras.",
+  },
+  {
+    num: "04",
+    question: "¿Incluyen soporte o mejoras después de la entrega?",
+    answer:
+      "Sí. Cada proyecto incluye acompañamiento durante el despliegue y garantía post-lanzamiento, además de soporte continuo opcional si tu negocio necesita escalar nuevas funciones.",
+  },
+];
+---
+
+<section id="preguntas" class="swiss-section bg-black text-white overflow-hidden">
+  <div class="absolute inset-0 opacity-15 halftone pointer-events-none"></div>
+  <div class="swiss-container relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-10 items-start">
+      <div class="lg:col-span-4 fade-up">
+        <span class="zine-label !bg-zt-primary !border-white">05 / Preguntas frecuentes</span>
+        <h2 class="mt-5 font-display text-4xl md:text-6xl uppercase tracking-[-0.065em] leading-[0.84]">
+          Todo claro <br /><span class="text-zt-mint">antes de iniciar.</span>
+        </h2>
+        <p class="mt-5 border-l-2 border-zt-lime pl-4 text-sm md:text-base text-white/70 leading-relaxed">
+          Resolvemos las dudas más comunes sobre tiempos, presupuesto, propiedad del código y soporte.
+        </p>
+      </div>
+
+      <div class="lg:col-span-8 border-t-2 border-x-2 border-white fade-up">
+        {faqs.map((item, idx) => (
+          <details
+            class="group border-b-2 border-white bg-black open:bg-[#141613] transition-colors"
+            open={idx === 0}
+          >
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-4 md:p-6 select-none hover:bg-white/5 transition-colors">
+              <div class="flex items-center gap-4">
+                <span class="font-display text-2xl md:text-3xl text-zt-lime leading-none">
+                  {item.num}
+                </span>
+                <h3 class="font-display text-lg md:text-2xl uppercase tracking-[-0.04em] leading-snug text-white">
+                  {item.question}
+                </h3>
+              </div>
+              <span
+                class="flex h-8 w-8 shrink-0 items-center justify-center border-2 border-white bg-black font-mono text-sm font-bold text-white group-open:bg-zt-primary group-open:rotate-45 transition-transform"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </summary>
+            <div class="border-t border-white/20 px-4 pb-5 pt-3 md:px-6 md:pb-6 md:pl-16 text-sm md:text-base leading-relaxed text-white/75">
+              {item.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
