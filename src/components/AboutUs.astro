@@ -89,24 +89,24 @@ const pillars = [
 
 <section id="nosotros" class="swiss-section bg-[#e9e8d8] overflow-hidden">
   <div class="swiss-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-10 mb-14">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-6 sm:gap-y-8 lg:gap-x-10 mb-10 sm:mb-14">
       <div class="lg:col-span-4 fade-up flex flex-col justify-between">
         <div>
           <span class="swiss-kicker">04 / Sobre nosotros</span>
-          <div class="mt-2 border-2 border-black bg-[#d3d2bf] p-4 font-mono text-[10px] font-bold uppercase tracking-widest leading-relaxed shadow-[4px_4px_0_#0b0c0a]">
-            <div class="flex justify-between border-b border-black/30 pb-1.5 mb-1.5">
+          <div class="mt-2 border-2 border-black bg-[#d3d2bf] p-3.5 sm:p-4 font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-widest leading-relaxed shadow-[4px_4px_0_#0b0c0a]">
+            <div class="flex justify-between gap-2 border-b border-black/30 pb-1.5 mb-1.5">
               <span class="text-black/60">Equipo</span>
               <span>04 Integrantes</span>
             </div>
-            <div class="flex justify-between border-b border-black/30 pb-1.5 mb-1.5">
+            <div class="flex justify-between gap-2 border-b border-black/30 pb-1.5 mb-1.5">
               <span class="text-black/60">Estructura</span>
               <span>Célula completa</span>
             </div>
-            <div class="flex justify-between border-b border-black/30 pb-1.5 mb-1.5">
+            <div class="flex justify-between gap-2 border-b border-black/30 pb-1.5 mb-1.5">
               <span class="text-black/60">Modalidad</span>
               <span class="text-zt-primary">Contacto directo</span>
             </div>
-            <div class="flex justify-between">
+            <div class="flex justify-between gap-2">
               <span class="text-black/60">Base</span>
               <span>Chimbote — Perú</span>
             </div>
@@ -118,22 +118,22 @@ const pillars = [
         <h2 class="swiss-heading !max-w-[15ch]">
           Cuatro perfiles. <span class="swiss-accent">Un solo sistema.</span>
         </h2>
-        <p class="mt-6 max-w-2xl border-l-4 border-black pl-4 text-base md:text-lg font-medium leading-relaxed">
+        <p class="mt-5 sm:mt-6 max-w-2xl border-l-4 border-black pl-4 text-sm sm:text-base md:text-lg font-medium leading-relaxed">
           Sin teléfonos rotos ni capas comerciales innecesarias. Quienes definen la estrategia, diseñan la experiencia, programan el sistema y automatizan la operación somos las mismas personas que trabajan contigo.
         </p>
       </div>
     </div>
 
     {/* Matriz 2x2 de Fichas Editoriales Horizontales (Swiss Dossier) */}
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-7 lg:gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 lg:gap-8">
       {team.map((member) => (
-        <article class="zine-panel group flex flex-col justify-between bg-[#f8f8ef] transition-transform duration-200 hover:-translate-y-1 fade-up">
+        <article class="zine-panel group flex flex-col justify-between bg-[#f8f8ef] transition-transform duration-200 hover:-translate-y-1 fade-up min-w-0">
           {/* Cabecera técnica de la ficha */}
-          <div class="flex items-center justify-between border-b-2 border-black bg-black px-4 py-2.5 text-white">
-            <span class="font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-zt-mint">
+          <div class="flex items-center justify-between gap-2 border-b-2 border-black bg-black px-3.5 sm:px-4 py-2.5 text-white">
+            <span class="font-mono text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.14em] text-zt-mint truncate">
               {member.code}
             </span>
-            <span class="border border-white/40 bg-white/10 px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-widest">
+            <span class="border border-white/40 bg-white/10 px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-widest shrink-0">
               {member.badge}
             </span>
           </div>
@@ -141,10 +141,10 @@ const pillars = [
           {/* Cuerpo dividido: Retrato a la izquierda + Expediente a la derecha */}
           <div class="grid grid-cols-1 sm:grid-cols-12 flex-1">
             {/* Columna izquierda: Escenario del retrato */}
-            <div class="team-portrait sm:col-span-5 relative min-h-64 sm:min-h-72 overflow-hidden border-b-2 sm:border-b-0 sm:border-r-2 border-black bg-[#e9e8d8] speed-lines">
+            <div class="team-portrait sm:col-span-5 relative h-60 sm:h-auto sm:min-h-68 overflow-hidden border-b-2 sm:border-b-0 sm:border-r-2 border-black bg-[#e9e8d8] speed-lines">
               <div class:list={["team-blob", member.blobClass]} aria-hidden="true"></div>
               <span
-                class="absolute right-3 top-2 z-0 font-display text-6xl leading-none text-black/10 select-none md:text-7xl"
+                class="absolute right-3 top-2 z-0 font-display text-5xl sm:text-6xl leading-none text-black/10 select-none xl:text-7xl"
                 aria-hidden="true"
               >
                 {member.num}
@@ -152,39 +152,42 @@ const pillars = [
               <Image
                 src={member.photo}
                 alt={member.fullName}
+                widths={[260, 420]}
+                sizes="(max-width: 639px) 220px, 240px"
                 class:list={["team-photo", member.photoClass]}
                 loading="lazy"
+                decoding="async"
                 format="webp"
-                quality={80}
+                quality={75}
               />
               <div class="absolute bottom-2.5 left-2.5 right-2.5 z-10 border-2 border-black bg-[#f8f8ef] px-2 py-1 text-center shadow-[3px_3px_0_#0b0c0a]">
-                <span class="block truncate font-mono text-[8px] font-extrabold uppercase tracking-[0.12em] text-zt-primary">
+                <span class="block truncate font-mono text-[8px] font-extrabold uppercase tracking-[0.1em] text-zt-primary">
                   {member.role}
                 </span>
               </div>
             </div>
 
             {/* Columna derecha: Datos del integrante */}
-            <div class="sm:col-span-7 p-5 md:p-6 flex flex-col justify-between">
+            <div class="sm:col-span-7 p-4 sm:p-5 xl:p-6 flex flex-col justify-between min-w-0">
               <div>
                 <div class="flex items-center justify-between gap-2">
-                  <span class="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-black/55">
+                  <span class="font-mono text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] text-black/55 truncate">
                     {member.surnames}
                   </span>
-                  <span class="font-mono text-[9px] font-extrabold uppercase tracking-widest text-zt-primary">
+                  <span class="font-mono text-[9px] font-extrabold uppercase tracking-widest text-zt-primary shrink-0">
                     #{member.num}
                   </span>
                 </div>
-                <h3 class="mt-1 font-display text-3xl uppercase leading-[0.88] tracking-[-0.055em] md:text-4xl">
+                <h3 class="mt-1 font-display text-2xl sm:text-3xl xl:text-4xl uppercase leading-[0.88] tracking-[-0.055em] break-words">
                   {member.firstName}
                 </h3>
 
-                <p class="mt-3.5 text-sm font-medium leading-relaxed text-black/80">
+                <p class="mt-3 text-xs sm:text-sm font-medium leading-relaxed text-black/80">
                   {member.bio}
                 </p>
               </div>
 
-              <div class="mt-5 pt-4 border-t border-black/15 flex flex-wrap gap-1.5">
+              <div class="mt-4 pt-3.5 border-t border-black/15 flex flex-wrap gap-1.5">
                 {member.specialties.map((item) => (
                   <span class="border-2 border-black bg-[#e9e8d8] px-2 py-0.5 font-mono text-[8px] font-bold uppercase tracking-widest group-hover:bg-zt-lime transition-colors">
                     #{item}
@@ -195,23 +198,23 @@ const pillars = [
           </div>
 
           {/* Pie de ficha */}
-          <div class="flex items-center justify-between border-t-2 border-black bg-[#d3d2bf] px-4 py-2.5 font-mono text-[9px] font-bold uppercase tracking-wider">
-            <span class="text-black/60">Foco operativo</span>
-            <span class="text-black">{member.focus}</span>
+          <div class="flex items-center justify-between gap-2 border-t-2 border-black bg-[#d3d2bf] px-3.5 sm:px-4 py-2.5 font-mono text-[8px] sm:text-[9px] font-bold uppercase tracking-wider">
+            <span class="text-black/60 shrink-0">Foco operativo</span>
+            <span class="text-black truncate">{member.focus}</span>
           </div>
         </article>
       ))}
     </div>
 
     {/* Franja inferior de valor del equipo + CTA */}
-    <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 border-[3px] border-black bg-[#d3d2bf] shadow-[7px_7px_0_#0b0c0a] fade-up">
+    <div class="mt-10 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 border-[3px] border-black bg-[#d3d2bf] shadow-[6px_6px_0_#0b0c0a] fade-up">
       <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 divide-y-2 md:divide-y-0 md:divide-x-2 divide-black">
         {pillars.map((pillar) => (
-          <div class="p-5">
+          <div class="p-4 sm:p-5">
             <span class="inline-block border border-black bg-black px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-widest text-zt-mint">
               {pillar.code}
             </span>
-            <h4 class="mt-3 font-display text-lg uppercase leading-tight tracking-[-0.04em]">
+            <h4 class="mt-2.5 sm:mt-3 font-display text-base sm:text-lg uppercase leading-tight tracking-[-0.04em]">
               {pillar.title}
             </h4>
             <p class="mt-1.5 text-xs font-medium leading-relaxed text-black/75">
@@ -221,7 +224,7 @@ const pillars = [
         ))}
       </div>
 
-      <div class="lg:col-span-3 flex items-center justify-center border-t-2 lg:border-t-0 lg:border-l-2 border-black bg-[#e9e8d8] p-5">
+      <div class="lg:col-span-3 flex items-center justify-center border-t-2 lg:border-t-0 lg:border-l-2 border-black bg-[#e9e8d8] p-4 sm:p-5">
         <a href="/nosotros/" class="swiss-button swiss-button--primary w-full justify-between">
           <span>Conoce al equipo</span>
           <span aria-hidden="true">→</span>
